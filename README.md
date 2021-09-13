@@ -1,44 +1,97 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Web Practice
 
-## Available Scripts
+|  #  | Page      | Description                                                        |
+| :-: | :-------- | :----------------------------------------------------------------- |
+|  1  | Homepage  | Shows paths and a brief description of each path                   |
+|  2  | Login     | Login page                                                         |
+|  3  | Register  | Register page                                                      |
+|  4  | Path      | Overview of path, the challenges of path                           |
+|  5  | Challenge | Overview of challenge, user stories, link to designs file on Figma |
+|  6  | Dashboard | Ongoing projects, solutions, feedbacks, votes                      |
+|  7  | Solution  | Solutions by path                                                  |
 
-In the project directory, you can run:
+### GENERAL LAYOUT
 
-### `yarn start`
+- Header on top
+- Sidebar on left
+- The main content on right (based on sub-routing)
+- Footer on bottom right
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### LOGIN
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Login form
 
-### `yarn test`
+- `Email`
+  - Email input
+  - Required
+- `Password`
+  - Password input
+  - Required
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### REGISTER
 
-### `yarn build`
+#### Register form
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `Name`
+  - Text input
+  - Should have at least 2 words
+  - Required
+- `Username`
+  - Text input
+  - Should only contain a-z, 0-9
+  - Required
+- `Email`
+  - Email input
+  - Required
+- `Password`
+  - Password input
+  - Required
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### DASHBOARD
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Ongoing projects
+- Completed projects
+- Feedbacks
+- Votes
 
-### `yarn eject`
+### CHALLENGE
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Overview
+- User stories
+- Designs file on Figma
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### PATH
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Overview
+  - For who
+  - Rules
+- Challenges
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### SOLUTIONS
 
-## Learn More
+- Solutions by path
+- Each solution includes:
+  - Challenge name
+  - Username
+  - Thumbnail image of challenge
+  - Actions: feedback & vote
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Built with
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- UI library: Material UI
+- Routing: React router DOM
+- Form: React hook form
+- Form validation: Yup
+- HTTP client: axios
+
+### Routings
+
+- `/`: Home page
+- `/login`: Login page
+- `/register`: Register page
+- `/paths/:pathName`: Path
+- `/challenges/:challengeId`: Challenge
+- `/dashboard`: Dashboard
+- `/paths/:pathName/solution`: Solutions
+
+Happy coding 🎉
