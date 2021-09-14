@@ -1,9 +1,10 @@
 export interface User {
+  id: string;
+
   email: string;
-  password: string;
+  name: string;
+  username: string;
 
-  name?: string;
-  username?: string;
-
-  id?: string;
+  avatarUrl: string;
+  githubUrl: string;
 }

@@ -1,8 +1,7 @@
-import { User } from 'models';
-import axiosClient from './axiosClient';
+import { LoginPayload, SignupPayload } from 'models';
 
 const userApi = {
-  login(data: User) {
+  login(data: LoginPayload) {
     // const url = '/auth/login';
     // return axiosClient.post(url, data);
 
@@ -24,7 +23,7 @@ const userApi = {
     });
   },
 
-  signup(data: User) {
+  signup(data: SignupPayload) {
     // const url = '/auth/register';
     // return axiosClient.post(url, data);
 
