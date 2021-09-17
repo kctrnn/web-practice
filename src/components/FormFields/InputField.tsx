@@ -26,7 +26,7 @@ export const InputField = ({
   return (
     <TextField
       {...field}
-      variant='outlined'
+      variant='filled'
       fullWidth
       label={label}
       inputProps={inputProps}
