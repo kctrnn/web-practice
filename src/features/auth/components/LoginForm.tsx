@@ -47,7 +47,9 @@ function LoginForm({ onSubmit }: LoginFormProps) {
         type='submit'
         variant='contained'
         loading={isLogging}
-        sx={{ width: '50%' }}
+        size='large'
+        disableElevation
+        sx={{ width: '50%', mt: 2 }}
       >
         Sign In
       </LoadingButton>
