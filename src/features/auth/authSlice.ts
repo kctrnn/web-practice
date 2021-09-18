@@ -3,7 +3,7 @@ import { RootState } from 'app/store';
 import { LoginPayload, SignupPayload, User } from 'models';
 
 export interface AuthState {
-  currentUser: Partial<User>;
+  currentUser: User | {};
   logging: boolean;
   isLoggedIn: boolean;
 }
