@@ -2,7 +2,11 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Button, Stack } from '@mui/material';
 
-function SocialList() {
+export interface SocialListProps {
+  isRegisterMode?: boolean;
+}
+
+function SocialList({ isRegisterMode = false }: SocialListProps) {
   return (
     <Stack direction='row' my={4} spacing={2}>
       <Button
@@ -17,7 +21,7 @@ function SocialList() {
           ':hover': { bgcolor: 'grey.900' },
         }}
       >
-        Sign in with Github
+        {isRegisterMode ? 'Sign up with Github' : 'Sign in with Github'}
       </Button>
 
       <Button

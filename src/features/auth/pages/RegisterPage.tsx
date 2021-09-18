@@ -2,9 +2,9 @@ import { Divider, Link, Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { useAppDispatch } from 'app/hooks';
 import { Images } from 'constants/index';
-import { LoginPayload } from 'models';
-import { login } from '../authSlice';
-import LoginForm from '../components/LoginForm';
+import { SignupPayload } from 'models';
+import { signup } from '../authSlice';
+import RegisterForm from '../components/RegisterForm';
 import SocialList from '../components/SocialList';
 
 const ArtworkImage = styled('div')(({ theme }) => ({
@@ -28,41 +28,42 @@ const FormContainer = styled(Stack)(({ theme }) => ({
   padding: theme.spacing(5),
 }));
 
-function LoginPage() {
+function RegisterPage() {
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (formValues: LoginPayload) => {
-    const action = login(formValues);
+  const handleSubmit = (formValues: SignupPayload) => {
+    const action = signup(formValues);
     dispatch(action);
   };
 
   return (
     <Stack direction='row' minHeight='100vh'>
       <ArtworkImage>
-        <img src={Images.SIGNIN_ARTWORK} alt='signin-artwork' />
+        <img src={Images.SIGNUP_ARTWORK} alt='signup-artwork' />
       </ArtworkImage>
 
       <FormContainer>
         <Box>
           <Typography component='h1' fontSize='1.5rem' fontWeight={700}>
-            Sign in to WebPractice
+            Sign up to WebPractice
           </Typography>
 
-          <SocialList />
+          <SocialList isRegisterMode />
+
           <Divider sx={{ color: 'text.secondary', mb: 2 }}>Or</Divider>
 
-          <LoginForm onSubmit={handleSubmit} />
+          <RegisterForm onSubmit={handleSubmit} />
         </Box>
       </FormContainer>
 
       <Typography position='fixed' right={32} top={32}>
-        Not a member?{' '}
+        Already a member?{' '}
         <Link href='#' underline='none'>
-          Sign up now
+          Sign In
         </Link>
       </Typography>
     </Stack>
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
