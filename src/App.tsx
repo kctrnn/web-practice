@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import LoginForm from 'features/auth/components/LoginForm';
+import LoginPage from 'features/auth/pages/LoginPage';
 import React from 'react';
 
 const theme = createTheme({
@@ -12,7 +12,7 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <LoginForm />
+      <LoginPage />
     </ThemeProvider>
   );
 }
