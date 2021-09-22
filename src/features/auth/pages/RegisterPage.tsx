@@ -1,8 +1,9 @@
-import { Divider, Link, Stack, Typography } from '@mui/material';
+import { Divider, Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { useAppDispatch } from 'app/hooks';
 import { Images } from 'constants/index';
 import { SignupPayload } from 'models';
+import { Link } from 'react-router-dom';
 import { signup } from '../authSlice';
 import RegisterForm from '../components/RegisterForm';
 import SocialList from '../components/SocialList';
@@ -57,10 +58,7 @@ function RegisterPage() {
       </FormContainer>
 
       <Typography position='fixed' right={32} top={32}>
-        Already a member?{' '}
-        <Link href='#' underline='none'>
-          Sign In
-        </Link>
+        Already a member? <Link to='/login'>Sign In</Link>
       </Typography>
     </Stack>
   );

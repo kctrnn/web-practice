@@ -1,4 +1,5 @@
 import { Home, NotFound, PrivateRoute } from 'components/Common';
+import Layout from 'components/Layout';
 import LoginPage from 'features/auth/pages/LoginPage';
 import RegisterPage from 'features/auth/pages/RegisterPage';
 import Challenge from 'features/challenge';
@@ -12,7 +13,8 @@ function App() {
     <>
       <Switch>
         <Route exact path='/'>
-          <Home />
+          {/* <Home /> */}
+          <Layout />
         </Route>
 
         <Route path='/login'>
