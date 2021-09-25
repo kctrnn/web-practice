@@ -1,16 +1,13 @@
 import { Box, styled } from '@mui/system';
-import { Header, Sidebar } from 'components/Common';
+import { Footer, Header, Sidebar } from 'components/Common';
 
 const Container = styled(Box)(({ theme }) => ({
-  minHeight: '150vh',
+  minHeight: '100vh',
+
   display: 'grid',
   gridTemplateRows: 'auto 1fr auto',
   gridTemplateColumns: '240px 1fr',
   gridTemplateAreas: "'header header' 'sidebar main' 'footer footer'",
-}));
-
-const SidebarBox = styled(Box)(({ theme }) => ({
-  gridArea: 'sidebar',
 }));
 
 const HeaderBox = styled(Box)(({ theme }) => ({
@@ -18,9 +15,8 @@ const HeaderBox = styled(Box)(({ theme }) => ({
   borderBottom: '1px solid #e5eaf0',
 }));
 
-const FooterBox = styled(Box)(({ theme }) => ({
-  gridArea: 'footer',
-  borderTop: '1px solid #e5eaf0',
+const SidebarBox = styled(Box)(({ theme }) => ({
+  gridArea: 'sidebar',
 }));
 
 const Main = styled(Box)(({ theme }) => ({
@@ -28,7 +24,16 @@ const Main = styled(Box)(({ theme }) => ({
   backgroundColor: '#F9F8FD',
 }));
 
-function Layout() {
+const FooterBox = styled(Box)(({ theme }) => ({
+  gridArea: 'footer',
+  borderTop: '1px solid #e5eaf0',
+}));
+
+export interface LayoutProps {
+  children: JSX.Element;
+}
+
+function Layout({ children }: LayoutProps) {
   return (
     <Container>
       <HeaderBox>
@@ -39,9 +44,11 @@ function Layout() {
         <Sidebar />
       </SidebarBox>
 
-      <Main>MAIN</Main>
+      <Main>{children}</Main>
 
-      <FooterBox>FOOTER</FooterBox>
+      <FooterBox>
+        <Footer />
+      </FooterBox>
     </Container>
   );
 }

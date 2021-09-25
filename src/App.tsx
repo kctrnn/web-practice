@@ -5,7 +5,6 @@ import RegisterPage from 'features/auth/pages/RegisterPage';
 import Challenge from 'features/challenge';
 import Dashboard from 'features/dashboard';
 import Path from 'features/path';
-import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -13,8 +12,9 @@ function App() {
     <>
       <Switch>
         <Route exact path='/'>
-          {/* <Home /> */}
-          <Layout />
+          <Layout>
+            <Home />
+          </Layout>
         </Route>
 
         <Route path='/login'>
@@ -25,9 +25,17 @@ function App() {
           <RegisterPage />
         </Route>
 
-        <PrivateRoute path='/dashboard'>
-          <Dashboard />
-        </PrivateRoute>
+        <Route path='/dashboard'>
+          <Layout>
+            <Dashboard />
+          </Layout>
+        </Route>
+
+        {/* <PrivateRoute path='/dashboard'>
+          <Layout>
+            <Dashboard />
+          </Layout>
+        </PrivateRoute> */}
 
         <Route path='/paths'>
           <Path />
