@@ -1,6 +1,7 @@
 import { call, delay, fork, put, race, take } from '@redux-saga/core/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import userApi, { AuthResponse } from 'api/userApi';
+import { push } from 'connected-react-router';
 import { LoginPayload, SignupPayload } from 'models';
 import {
   login,
@@ -19,7 +20,8 @@ function* handleLogin(payload: LoginPayload) {
     localStorage.setItem('access_token', jwt);
     yield put(loginSuccess(user));
 
-    // redirect to
+    // redirect to home page
+    yield put(push('/'));
   } catch (error) {
     yield put(loginFailed());
   }
@@ -32,7 +34,8 @@ function* handleRegister(payload: SignupPayload) {
     localStorage.setItem('access_token', jwt);
     yield put(signupSuccess(user));
 
-    // redirect to
+    // redirect to home page
+    yield put(push('/'));
   } catch (error) {
     yield put(signupFailed());
   }
@@ -42,7 +45,8 @@ function* handleLogout() {
   yield delay(1000);
   localStorage.removeItem('access_token');
 
-  // redirect to
+  // redirect to login page
+  yield put(push('/login'));
 }
 
 function* watchAuthFlow() {

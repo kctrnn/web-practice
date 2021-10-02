@@ -1,9 +1,10 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { history } from 'utils';
 import App from './App';
 import { store } from './app/store';
 import './index.css';
@@ -19,12 +20,12 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
+      <ConnectedRouter history={history}>
         <CssBaseline />
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
-      </Router>
+      </ConnectedRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
