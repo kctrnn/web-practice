@@ -25,17 +25,11 @@ function App() {
           <RegisterPage />
         </Route>
 
-        <Route path='/dashboard'>
+        <PrivateRoute path='/dashboard'>
           <Layout>
             <Dashboard />
           </Layout>
-        </Route>
-
-        {/* <PrivateRoute path='/dashboard'>
-          <Layout>
-            <Dashboard />
-          </Layout>
-        </PrivateRoute> */}
+        </PrivateRoute>
 
         <Route path='/paths'>
           <Path />

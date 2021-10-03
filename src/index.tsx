@@ -12,8 +12,7 @@ import * as serviceWorker from './serviceWorker';
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Poppins',
-    fontSize: 12,
+    fontFamily: ['Poppins', 'sans-serif'].join(','),
   },
 });
 

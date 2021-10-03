@@ -3,6 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/system';
 import { useAppDispatch } from 'app/hooks';
 import { logout } from 'features/auth/authSlice';
 import { Link } from 'react-router-dom';
@@ -15,22 +16,32 @@ export const Header = () => {
     dispatch(logout());
   };
 
+  const Logo = styled(Typography)(() => ({
+    fontSize: '1.2rem',
+    fontWeight: 700,
+    fontFamily: `'Raleway', sans-serif`,
+  }));
+
+  const ButtonText = styled(Typography)(() => ({
+    fontSize: '0.875rem',
+  }));
+
   return (
     <AppBar position='static' color='transparent' sx={{ boxShadow: 'none' }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        <Typography variant='h6' component='h1' fontWeight={500}>
-          WebPractice
-        </Typography>
+        <Logo>🚀 Web Practice</Logo>
 
         {!isLoggedIn && (
           <Stack direction='row' spacing={2}>
             <Link to='/login'>
-              <Button>Sign in</Button>
+              <Button>
+                <ButtonText>Sign in</ButtonText>
+              </Button>
             </Link>
 
             <Link to='/signup'>
               <Button variant='contained' disableElevation>
-                Sign up
+                <ButtonText>Sign up</ButtonText>
               </Button>
             </Link>
           </Stack>
@@ -43,7 +54,7 @@ export const Header = () => {
             disableElevation
             onClick={handleLogoutClick}
           >
-            Logout
+            <ButtonText>Logout</ButtonText>
           </Button>
         )}
       </Toolbar>

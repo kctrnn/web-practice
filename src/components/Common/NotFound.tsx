@@ -8,13 +8,15 @@ export const NotFound = () => {
       minHeight='100vh'
       spacing={4}
     >
-      <Typography component='h1' variant='h3'>
-        OOOPS...
-      </Typography>
-
-      <Alert severity='warning'>
-        The page you are looking for does not exist or has been removed.
+      <Alert severity='error'>
+        <Typography component='h1' variant='h3'>
+          404 NOT FOUND
+        </Typography>
       </Alert>
+
+      <Typography>
+        The page you are looking for does not exist or has been removed.
+      </Typography>
     </Stack>
   );
 };

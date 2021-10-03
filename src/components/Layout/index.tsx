@@ -12,21 +12,23 @@ const Container = styled(Box)(({ theme }) => ({
 
 const HeaderBox = styled(Box)(({ theme }) => ({
   gridArea: 'header',
-  borderBottom: '1px solid #e5eaf0',
+  borderBottom: '1px solid #EAEEF3',
 }));
 
 const SidebarBox = styled(Box)(({ theme }) => ({
   gridArea: 'sidebar',
+  borderRight: '1px solid #EAEEF3',
 }));
 
 const Main = styled(Box)(({ theme }) => ({
   gridArea: 'main',
-  backgroundColor: '#F9F8FD',
+  // backgroundColor: '#F9F8FD',
+  padding: theme.spacing(2),
 }));
 
 const FooterBox = styled(Box)(({ theme }) => ({
   gridArea: 'footer',
-  borderTop: '1px solid #e5eaf0',
+  borderTop: '1px solid #EAEEF3',
 }));
 
 export interface LayoutProps {
