@@ -24,3 +24,33 @@ a {
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
 }
+
+/* Custom dots carousel */
+.slick-dots li {
+  width: 32px;
+}
+
+.slick-dots li.slick-active {
+  width: 50px;
+}
+
+.slick-dots li button:before {
+  content: '';
+  width: 32px;
+  height: 6px;
+  opacity: 1;
+  border-radius: 4px;
+  margin-right: 10px;
+  background-color: #dce0e3;
+  transition: width 0.3s linear, background-color 0.3s linear;
+}
+
+.slick-dots li.slick-active button:before {
+  width: 50px;
+  background-color: #9aa6af;
+}
+
+.slick-dots {
+  text-align: left;
+  top: 105%;
+}

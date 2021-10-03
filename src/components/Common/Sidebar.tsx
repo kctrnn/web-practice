@@ -1,5 +1,5 @@
 import AspectRatioIcon from '@mui/icons-material/AspectRatio';
-import DraftsIcon from '@mui/icons-material/Drafts';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import HomeMaxIcon from '@mui/icons-material/HomeMax';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import List from '@mui/material/List';
@@ -48,7 +48,7 @@ export const Sidebar = () => {
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
               <ListItemIcon>
-                <DraftsIcon />
+                <DashboardIcon />
               </ListItemIcon>
 
               <ListItemText primary='Dashboard' disableTypography />

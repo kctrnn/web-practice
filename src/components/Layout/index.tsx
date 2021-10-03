@@ -6,7 +6,7 @@ const Container = styled(Box)(({ theme }) => ({
 
   display: 'grid',
   gridTemplateRows: 'auto 1fr auto',
-  gridTemplateColumns: '240px 1fr',
+  gridTemplateColumns: '240px calc(100% - 240px)',
   gridTemplateAreas: "'header header' 'sidebar main' 'footer footer'",
 }));
 
@@ -17,7 +17,7 @@ const HeaderBox = styled(Box)(({ theme }) => ({
 
 const SidebarBox = styled(Box)(({ theme }) => ({
   gridArea: 'sidebar',
-  borderRight: '1px solid #EAEEF3',
+  // borderRight: '1px solid #EAEEF3',
 }));
 
 const Main = styled(Box)(({ theme }) => ({

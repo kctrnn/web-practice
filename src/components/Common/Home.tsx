@@ -1,7 +1,12 @@
-import { Stack, Typography } from '@mui/material';
+import { Chip, Divider, Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
+import { Carousel } from './index';
+import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 
-const Container = styled(Box)(() => ({}));
+const Container = styled(Box)(() => ({
+  height: '100%',
+  paddingRight: '1rem',
+}));
 
 const PathBox = styled(Box)(() => ({
   paddingTop: '2rem',
@@ -30,7 +35,7 @@ const PathItem = styled(Box)(() => ({
 }));
 
 const Heading = styled(Typography)(() => ({
-  fontSize: '1.1rem',
+  fontSize: '1.125rem',
   fontWeight: 600,
   marginTop: '1rem',
   marginBottom: '.5rem',
@@ -45,13 +50,19 @@ export const Home = () => {
   return (
     <Container>
       {/* Carousel */}
-      <Box></Box>
+      <Box>
+        <Carousel />
+      </Box>
 
       {/* Challenge paths */}
       <PathBox>
-        <Typography variant='h6' component='h2' mb={2}>
-          Challenge Paths
-        </Typography>
+        <Typography variant='h6' component='h2' mb={2}></Typography>
+
+        <Box mb={2}>
+          <Divider>
+            <Chip label='Challenge Paths' variant='outlined' color='primary' />
+          </Divider>
+        </Box>
 
         <Stack direction='row' justifyContent='space-between'>
           <PathItem>
