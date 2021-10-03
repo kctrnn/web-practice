@@ -15,6 +15,7 @@ function SocialList({ isRegisterMode = false }: SocialListProps) {
         disableElevation
         startIcon={<GitHubIcon />}
         sx={{
+          fontSize: '.875rem',
           textTransform: 'none',
           width: 240,
           bgcolor: 'grey.800',

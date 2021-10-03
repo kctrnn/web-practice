@@ -35,7 +35,7 @@ export const PasswordField = ({
       variant='filled'
       fullWidth
       label={label}
-      inputProps={inputProps}
+      inputProps={{ ...inputProps, style: { fontSize: 14 } }}
       margin='normal'
       autoComplete='off'
       error={invalid}
@@ -50,6 +50,7 @@ export const PasswordField = ({
           </InputAdornment>
         ),
       }}
+      InputLabelProps={{ style: { fontSize: 14 } }}
     />
   );
 };

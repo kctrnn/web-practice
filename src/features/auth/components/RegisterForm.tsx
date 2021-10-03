@@ -70,7 +70,7 @@ function RegisterForm({ onSubmit }: RegisterFormProps) {
         loading={isLogging}
         size='large'
         disableElevation
-        sx={{ width: '40%', mt: 2 }}
+        sx={{ width: '40%', mt: 2, fontSize: '.75rem' }}
       >
         Create Account
       </LoadingButton>

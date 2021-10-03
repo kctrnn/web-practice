@@ -49,7 +49,7 @@ function LoginForm({ onSubmit }: LoginFormProps) {
         loading={isLogging}
         size='large'
         disableElevation
-        sx={{ width: '40%', mt: 2 }}
+        sx={{ width: '40%', mt: 2, fontSize: '.75rem' }}
       >
         Sign In
       </LoadingButton>

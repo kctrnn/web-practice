@@ -29,11 +29,12 @@ export const InputField = ({
       variant='filled'
       fullWidth
       label={label}
-      inputProps={inputProps}
+      inputProps={{ ...inputProps, style: { fontSize: 14 } }}
       margin='normal'
       autoComplete='off'
       error={invalid}
       helperText={error?.message}
+      InputLabelProps={{ style: { fontSize: 14 } }}
     />
   );
 };
