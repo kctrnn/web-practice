@@ -5,6 +5,10 @@ export interface Challenge {
   description: string;
   level: number;
   thumbnailImage: string;
+  order: number;
+  designId: string;
+  resourceId: string;
+  brief: string;
 
   pathSlug:
     | 'responsive-web-developer'
