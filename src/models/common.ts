@@ -9,3 +9,8 @@ export interface SignupPayload {
   email: string;
   password: string;
 }
+
+export type PathSlug =
+  | 'responsive-web-developer'
+  | 'front-end-developer'
+  | 'full-stack-developer';

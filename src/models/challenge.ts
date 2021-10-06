@@ -1,3 +1,5 @@
+import { PathSlug } from 'models';
+
 export interface Challenge {
   id: string;
 
@@ -10,10 +12,7 @@ export interface Challenge {
   resourceId: string;
   brief: string;
 
-  pathSlug:
-    | 'responsive-web-developer'
-    | 'front-end-developer'
-    | 'full-stack-developer';
+  pathSlug: PathSlug;
 
   createdAt?: number;
   updatedAt?: number;
