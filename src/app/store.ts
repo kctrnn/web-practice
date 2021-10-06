@@ -6,6 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import authReducer from 'features/auth/authSlice';
+import challengeReducer from 'features/challenge/challenge';
 import createSagaMiddleware from 'redux-saga';
 import { history } from 'utils';
 import rootSaga from './rootSaga';
@@ -13,6 +14,7 @@ import rootSaga from './rootSaga';
 const rootReducer = combineReducers({
   router: connectRouter(history),
   auth: authReducer,
+  challenge: challengeReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
