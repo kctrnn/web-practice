@@ -1,22 +1,30 @@
-import { Alert, Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 
 export const NotFound = () => {
   return (
-    <Stack
-      alignItems='center'
-      justifyContent='center'
+    <Box
       minHeight='100vh'
-      spacing={4}
+      display='flex'
+      justifyContent='center'
+      alignItems='center'
     >
-      <Alert severity='error'>
-        <Typography component='h1' variant='h3'>
-          404 NOT FOUND
+      <Stack direction='row' alignItems='center'>
+        <Typography
+          variant='h5'
+          component='h1'
+          sx={{
+            p: '.5rem 1.5rem .5rem 0',
+            mr: '1.5rem',
+            fontWeight: 500,
+            borderRight: '1px solid rgba(0, 0, 0,.3)',
+          }}
+        >
+          404
         </Typography>
-      </Alert>
 
-      <Typography>
-        The page you are looking for does not exist or has been removed.
-      </Typography>
-    </Stack>
+        <Typography>This page could not be found.</Typography>
+      </Stack>
+    </Box>
   );
 };

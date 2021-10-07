@@ -1,7 +1,10 @@
+import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import { Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { CAROUSEL_LIST } from 'constants/index';
 import Slider from 'react-slick';
+
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
@@ -45,13 +48,63 @@ const Content = styled(Box)(() => ({
   },
 }));
 
+const Arrow = styled(Box)({
+  position: 'absolute',
+  top: '50%',
+  zIndex: 1,
+
+  width: '2rem',
+  height: '2rem',
+  borderRadius: '50%',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  color: '#4b4b4b',
+  backgroundColor: '#fff',
+
+  boxShadow: '0 3px 6px rgb(0 0 0 / 16%)',
+  cursor: 'pointer',
+});
+
+const NextArrow = ({ onClick }: any) => {
+  return (
+    <Arrow
+      onClick={onClick}
+      sx={{
+        transform: 'translate(50%, -50%)',
+        right: 0,
+      }}
+    >
+      <KeyboardArrowRightRoundedIcon />
+    </Arrow>
+  );
+};
+
+const PrevArrow = ({ onClick }: any) => {
+  return (
+    <Arrow
+      onClick={onClick}
+      sx={{
+        transform: 'translate(-50%, -50%)',
+        left: 0,
+      }}
+    >
+      <KeyboardArrowLeftRoundedIcon />
+    </Arrow>
+  );
+};
+
 export const Carousel = () => {
   const settings = {
     dots: true,
     speed: 1000,
-    arrows: false,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 4000,
+
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
 
   return (
