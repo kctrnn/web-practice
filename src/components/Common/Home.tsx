@@ -1,7 +1,6 @@
 import { Chip, Divider, Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { Carousel } from './index';
-import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 
 const Container = styled(Box)(() => ({
   height: '100%',

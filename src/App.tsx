@@ -21,7 +21,7 @@ function App() {
           <LoginPage />
         </Route>
 
-        <Route path='/signup'>
+        <Route path='/register'>
           <RegisterPage />
         </Route>
 
@@ -31,8 +31,10 @@ function App() {
           </Layout>
         </PrivateRoute>
 
-        <Route path='/paths'>
-          <Path />
+        <Route path='/paths/:pathSlug'>
+          <Layout>
+            <Path />
+          </Layout>
         </Route>
 
         <Route path='/challenges'>

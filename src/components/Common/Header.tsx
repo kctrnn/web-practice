@@ -39,7 +39,7 @@ export const Header = () => {
               </Button>
             </Link>
 
-            <Link to='/signup'>
+            <Link to='/register'>
               <Button variant='contained' disableElevation>
                 <ButtonText>Sign up</ButtonText>
               </Button>

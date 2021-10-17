@@ -79,7 +79,7 @@ function LoginPage() {
       </FormContainer>
 
       <Typography position='fixed' right={32} top={24} fontSize='.875rem'>
-        Not a member? <Link to='/signup'>Sign up now</Link>
+        Not a member? <Link to='/register'>Sign up now</Link>
       </Typography>
 
       <Box position='fixed' left={16} top={24}>

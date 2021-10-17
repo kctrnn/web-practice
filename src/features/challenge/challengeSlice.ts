@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { Challenge } from 'models';
+import { Challenge, PathSlug } from 'models';
 
 export interface ChallengeState {
   list: Challenge[];
@@ -17,7 +17,7 @@ const challengeSlice = createSlice({
   name: 'challenge',
 
   reducers: {
-    fetchChallengeList(state) {
+    fetchChallengeList(state, action: PayloadAction<PathSlug>) {
       state.loading = true;
     },
 
