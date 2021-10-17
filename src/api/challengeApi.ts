@@ -1,16 +1,16 @@
-import { Challenge } from 'models';
-import { FAKE_CHALLENGE_LIST } from './fake-data';
+import { Challenge, ParamList } from 'models';
+import axiosClient from './axiosClient';
 
 const challengeApi = {
-  getAll(): Promise<Array<Challenge>> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(FAKE_CHALLENGE_LIST);
-      }, 2000);
-    });
+  getAll(params: ParamList): Promise<Array<Challenge>> {
+    const url = '/challenges';
+    return axiosClient.get(url, { params });
   },
 
-  get(id: string) {},
+  get(id: string): Promise<Challenge> {
+    const url = `/challenges${id}`;
+    return axiosClient.get(url);
+  },
 };
 
 export default challengeApi;

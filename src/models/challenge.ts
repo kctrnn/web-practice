@@ -5,14 +5,17 @@ export interface Challenge {
 
   name: string;
   description: string;
-  level: number;
-  thumbnailImage: string;
-  order: number;
-  designId: string;
-  resourceId: string;
   brief: string;
 
+  level: number;
+  order: number;
+
+  designId: string;
+  resourceId: string;
+  thumbnailImage: string;
+
   pathSlug: PathSlug;
+  tags: Array<string>;
 
   createdAt?: number;
   updatedAt?: number;
