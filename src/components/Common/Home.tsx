@@ -1,5 +1,6 @@
 import { Chip, Divider, Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
+import { Link } from 'react-router-dom';
 import { Carousel } from './index';
 
 const Container = styled(Box)(() => ({
@@ -11,9 +12,11 @@ const PathBox = styled(Box)(() => ({
   paddingTop: '2rem',
 }));
 
-const PathItem = styled(Box)(() => ({
+const PathItem = styled(Link)(() => ({
+  display: 'block',
   width: 'calc(100% / 3 - 1rem)',
   padding: '1rem',
+
   borderRadius: '.5rem',
   border: '1px solid #EAEEF3',
 
@@ -33,9 +36,11 @@ const PathItem = styled(Box)(() => ({
   },
 }));
 
-const Heading = styled(Typography)(() => ({
+const Heading = styled(Typography)(({ theme }) => ({
   fontSize: '1.125rem',
   fontWeight: 600,
+  color: theme.palette.text.primary,
+
   marginTop: '1rem',
   marginBottom: '.5rem',
 }));
@@ -64,7 +69,7 @@ export const Home = () => {
         </Box>
 
         <Stack direction='row' justifyContent='space-between'>
-          <PathItem>
+          <PathItem to='/paths/responsive-web-developer'>
             <img
               src='https://images.unsplash.com/photo-1615455057735-1d108a411194?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80'
               alt=''
@@ -76,7 +81,7 @@ export const Home = () => {
             </Description>
           </PathItem>
 
-          <PathItem>
+          <PathItem to='/paths/front-end-developer'>
             <img
               src='https://images.unsplash.com/photo-1633230329829-a52df5940e69?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80'
               alt=''
@@ -88,7 +93,7 @@ export const Home = () => {
             </Description>
           </PathItem>
 
-          <PathItem>
+          <PathItem to='/paths/full-stack-developer'>
             <img
               src='https://images.unsplash.com/photo-1633204412021-21bb58ad6180?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80'
               alt=''

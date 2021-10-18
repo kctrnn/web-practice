@@ -1,8 +1,9 @@
 import { call, delay, fork, put, race, take } from '@redux-saga/core/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import userApi, { AuthResponse } from 'api/userApi';
-import { push } from 'connected-react-router';
+import { go, push } from 'connected-react-router';
 import { LoginPayload, SignupPayload } from 'models';
+import { toast } from 'react-toastify';
 import {
   login,
   loginFailed,
@@ -20,6 +21,11 @@ function* handleLogin(payload: LoginPayload) {
     localStorage.setItem('access_token', jwt);
     yield put(loginSuccess(user));
 
+    // Show toast success
+    toast.success('Login successfully', {
+      icon: '🚀',
+    });
+
     // redirect to home page
     yield put(push('/'));
   } catch (error) {
@@ -34,6 +40,11 @@ function* handleRegister(payload: SignupPayload) {
     localStorage.setItem('access_token', jwt);
     yield put(signupSuccess(user));
 
+    // Show toast success
+    toast.success('Register successfully', {
+      icon: '🎉',
+    });
+
     // redirect to home page
     yield put(push('/'));
   } catch (error) {
@@ -44,6 +55,11 @@ function* handleRegister(payload: SignupPayload) {
 function* handleLogout() {
   yield delay(1000);
   localStorage.removeItem('access_token');
+
+  // Show toast success
+  toast.success('Logout successfully', {
+    icon: '😢',
+  });
 
   // redirect to login page
   yield put(push('/login'));

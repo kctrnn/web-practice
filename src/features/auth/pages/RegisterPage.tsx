@@ -24,6 +24,7 @@ const ArtworkImage = styled('div')(({ theme }) => ({
 }));
 
 const FormContainer = styled(Stack)(({ theme }) => ({
+  position: 'relative',
   justifyContent: 'center',
   alignItems: 'center',
   flexGrow: 1,
@@ -32,6 +33,17 @@ const FormContainer = styled(Stack)(({ theme }) => ({
 
 const LinkStyled = styled(Link)(({ theme }) => ({
   color: '#555',
+}));
+
+const HeaderContainer = styled(Stack)(({ theme }) => ({
+  position: 'absolute',
+  left: '1.5rem',
+  top: '1.5rem',
+  right: '1.5rem',
+
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
 }));
 
 const ArtBy = styled(Typography)(({ theme }) => ({
@@ -61,6 +73,22 @@ function RegisterPage() {
       </ArtworkImage>
 
       <FormContainer>
+        <HeaderContainer>
+          <LinkStyled to='/'>
+            <Button
+              color='inherit'
+              size='small'
+              startIcon={<KeyboardBackspaceRoundedIcon />}
+            >
+              Home page
+            </Button>
+          </LinkStyled>
+
+          <Typography fontSize='.875rem'>
+            Already a member? <Link to='/login'>Sign In</Link>
+          </Typography>
+        </HeaderContainer>
+
         <Box>
           <Typography
             component='h1'
@@ -72,28 +100,11 @@ function RegisterPage() {
           </Typography>
 
           <SocialList isRegisterMode />
-
           <Divider sx={{ color: 'text.secondary', mb: 2 }}>Or</Divider>
 
           <RegisterForm onSubmit={handleSubmit} />
         </Box>
       </FormContainer>
-
-      <Typography position='fixed' right={32} top={24} fontSize='.875rem'>
-        Already a member? <Link to='/login'>Sign In</Link>
-      </Typography>
-
-      <Box position='fixed' left={16} top={24}>
-        <LinkStyled to='/'>
-          <Button
-            color='inherit'
-            size='small'
-            startIcon={<KeyboardBackspaceRoundedIcon />}
-          >
-            Home page
-          </Button>
-        </LinkStyled>
-      </Box>
 
       <ArtBy>
         Art by <a href='https://dribbble.com/'>Dribbble</a>
