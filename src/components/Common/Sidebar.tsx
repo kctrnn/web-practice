@@ -28,6 +28,18 @@ const LinkStyled = styled(NavLink)(({ theme }) => ({
   },
 }));
 
+const ListItemTextStyled = styled(ListItemText)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
+  },
+}));
+
+const ListItemIconStyled = styled(ListItemIcon)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    minWidth: 0,
+  },
+}));
+
 export const Sidebar = () => {
   return (
     <Box px={2} pt={1}>
@@ -35,11 +47,11 @@ export const Sidebar = () => {
         <LinkStyled exact to='/'>
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
-              <ListItemIcon>
+              <ListItemIconStyled>
                 <HomeMaxIcon />
-              </ListItemIcon>
+              </ListItemIconStyled>
 
-              <ListItemText primary='Home' disableTypography />
+              <ListItemTextStyled primary='Home' disableTypography />
             </ListItemButton>
           </ListItem>
         </LinkStyled>
@@ -47,11 +59,11 @@ export const Sidebar = () => {
         <LinkStyled to='/dashboard'>
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
-              <ListItemIcon>
+              <ListItemIconStyled>
                 <DashboardIcon />
-              </ListItemIcon>
+              </ListItemIconStyled>
 
-              <ListItemText primary='Dashboard' disableTypography />
+              <ListItemTextStyled primary='Dashboard' disableTypography />
             </ListItemButton>
           </ListItem>
         </LinkStyled>
@@ -59,11 +71,11 @@ export const Sidebar = () => {
         <LinkStyled to='/solutions'>
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
-              <ListItemIcon>
+              <ListItemIconStyled>
                 <AspectRatioIcon />
-              </ListItemIcon>
+              </ListItemIconStyled>
 
-              <ListItemText primary='Solutions' disableTypography />
+              <ListItemTextStyled primary='Solutions' disableTypography />
             </ListItemButton>
           </ListItem>
         </LinkStyled>
@@ -71,11 +83,11 @@ export const Sidebar = () => {
         <LinkStyled to='/faq'>
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
-              <ListItemIcon>
+              <ListItemIconStyled>
                 <LiveHelpIcon />
-              </ListItemIcon>
+              </ListItemIconStyled>
 
-              <ListItemText primary='FAQ' disableTypography />
+              <ListItemTextStyled primary='FAQ' disableTypography />
             </ListItemButton>
           </ListItem>
         </LinkStyled>

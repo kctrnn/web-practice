@@ -8,11 +8,15 @@ const Container = styled(Box)(() => ({
   // paddingRight: '1rem',
 }));
 
-const PathBox = styled(Box)(() => ({
+const PathBox = styled(Box)(({ theme }) => ({
   paddingTop: '2rem',
+
+  [theme.breakpoints.down('sm')]: {
+    paddingTop: 0,
+  },
 }));
 
-const PathItem = styled(Link)(() => ({
+const PathItem = styled(Link)(({ theme }) => ({
   display: 'block',
   width: 'calc(100% / 3 - 1rem)',
   padding: '1rem',
@@ -22,6 +26,15 @@ const PathItem = styled(Link)(() => ({
 
   cursor: 'pointer',
   transition: 'all 200ms ease-in-out',
+
+  [theme.breakpoints.down('lg')]: {
+    width: 'calc(50% - 1rem)',
+    marginBottom: theme.spacing(4),
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    width: '100%',
+  },
 
   '&:hover': {
     transform: 'translateY(-0.25rem)',
@@ -50,13 +63,19 @@ const Description = styled(Typography)(() => ({
   color: '#555',
 }));
 
+const CarouselBox = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  },
+}));
+
 export const Home = () => {
   return (
     <Container>
       {/* Carousel */}
-      <Box>
+      <CarouselBox>
         <Carousel />
-      </Box>
+      </CarouselBox>
 
       {/* Challenge paths */}
       <PathBox>
@@ -68,7 +87,7 @@ export const Home = () => {
           </Divider>
         </Box>
 
-        <Stack direction='row' justifyContent='space-between'>
+        <Stack direction='row' justifyContent='space-between' flexWrap='wrap'>
           <PathItem to='/paths/responsive-web-developer'>
             <img
               src='https://images.unsplash.com/photo-1615455057735-1d108a411194?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80'

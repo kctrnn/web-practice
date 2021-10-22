@@ -6,8 +6,12 @@ const Container = styled(Box)(({ theme }) => ({
 
   display: 'grid',
   gridTemplateRows: 'auto 1fr auto',
-  gridTemplateColumns: '240px calc(100% - 240px)',
+  gridTemplateColumns: '15rem calc(100% - 15rem)',
   gridTemplateAreas: "'header header' 'sidebar main' 'footer footer'",
+
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '5.5rem calc(100% - 5.5rem)',
+  },
 }));
 
 const HeaderBox = styled(Box)(({ theme }) => ({
@@ -22,9 +26,20 @@ const SidebarBox = styled(Box)(({ theme }) => ({
 
 const Main = styled(Box)(({ theme }) => ({
   gridArea: 'main',
-  // backgroundColor: '#F9F8FD',
   padding: theme.spacing(2, 8),
   position: 'relative',
+
+  [theme.breakpoints.down('lg')]: {
+    padding: theme.spacing(2, 6),
+  },
+
+  [theme.breakpoints.down('md')]: {
+    padding: theme.spacing(2, 4),
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(2, 2),
+  },
 }));
 
 const FooterBox = styled(Box)(({ theme }) => ({

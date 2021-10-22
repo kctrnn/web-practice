@@ -4,7 +4,6 @@ import { Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { CAROUSEL_LIST } from 'constants/index';
 import Slider from 'react-slick';
-
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
@@ -13,7 +12,7 @@ const Item = styled(Box)(() => ({
   borderRadius: '.5rem',
 }));
 
-const Image = styled(Box)(() => ({
+const Image = styled(Box)(({ theme }) => ({
   flexBasis: '40%',
 
   '& > img': {
@@ -24,9 +23,13 @@ const Image = styled(Box)(() => ({
     borderTopRightRadius: '.5rem',
     borderBottomRightRadius: '.5rem',
   },
+
+  [theme.breakpoints.down('lg')]: {
+    display: 'none',
+  },
 }));
 
-const Content = styled(Box)(() => ({
+const Content = styled(Box)(({ theme }) => ({
   padding: '2rem 1.5rem',
   flex: 1,
 
@@ -45,6 +48,14 @@ const Content = styled(Box)(() => ({
     maxWidth: '65%',
     fontSize: '.875rem',
     lineHeight: 1.6,
+
+    [theme.breakpoints.down('lg')]: {
+      maxWidth: '75%',
+    },
+
+    [theme.breakpoints.down('md')]: {
+      maxWidth: '90%',
+    },
   },
 }));
 
