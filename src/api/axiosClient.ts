@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: 'https://json-server-kctrnn.herokuapp.com/api',
+  baseURL: 'https://web-practice-api.herokuapp.com/api',
   headers: {
     'content-type': 'application/json',
   },

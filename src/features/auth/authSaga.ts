@@ -1,7 +1,7 @@
 import { call, delay, fork, put, race, take } from '@redux-saga/core/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import userApi, { AuthResponse } from 'api/userApi';
-import { go, push } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import { LoginPayload, SignupPayload } from 'models';
 import { toast } from 'react-toastify';
 import {

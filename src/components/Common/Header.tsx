@@ -16,10 +16,11 @@ export const Header = () => {
     dispatch(logout());
   };
 
-  const Logo = styled(Typography)(() => ({
+  const Logo = styled(Link)(({ theme }) => ({
     fontSize: '1.2rem',
     fontWeight: 700,
     fontFamily: `'Raleway', sans-serif`,
+    color: theme.palette.text.primary,
   }));
 
   const ButtonText = styled(Typography)(() => ({
@@ -29,10 +30,10 @@ export const Header = () => {
   return (
     <AppBar position='static' color='transparent' sx={{ boxShadow: 'none' }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        <Logo>🚀 Web Practice</Logo>
+        <Logo to='/'>🚀 Web Practice</Logo>
 
         {!isLoggedIn && (
-          <Stack direction='row' spacing={2}>
+          <Stack direction='row' spacing={2} paddingRight={5}>
             <Link to='/login'>
               <Button>
                 <ButtonText>Sign in</ButtonText>

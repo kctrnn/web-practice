@@ -5,7 +5,7 @@ import { Carousel } from './index';
 
 const Container = styled(Box)(() => ({
   height: '100%',
-  paddingRight: '1rem',
+  // paddingRight: '1rem',
 }));
 
 const PathBox = styled(Box)(() => ({

@@ -12,6 +12,8 @@ function* handleFetchChallengeList(action: PayloadAction<PathSlug>) {
   try {
     const response: Array<Challenge> = yield call(challengeApi.getAll, {
       pathSlug_like: action.payload,
+      _sort: 'level',
+      _order: 'asc',
     });
 
     yield put(fetchChallengeListSuccess(response));

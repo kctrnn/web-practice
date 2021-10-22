@@ -1,4 +1,4 @@
-import { LinearProgress } from '@mui/material';
+import { Grid, LinearProgress, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {
@@ -9,16 +9,21 @@ import {
 import { Challenge, PathSlug } from 'models';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PathCard from './components/PathCard';
 
-const Wrapper = styled(Box)(() => ({
-  position: 'relative',
+const SIDEBAR_WIDTH = 240;
+
+const Wrapper = styled(Box)(({ theme }) => ({
+  // position: 'relative',
+  paddingTop: theme.spacing(4),
+  paddingBottom: theme.spacing(2),
 }));
 
 const Loading = styled(LinearProgress)(({ theme }) => ({
   position: 'absolute',
-  top: theme.spacing(-2),
-  right: theme.spacing(-2),
-  left: theme.spacing(-2),
+  top: theme.spacing(0),
+  right: theme.spacing(0),
+  left: `-${SIDEBAR_WIDTH}px`,
 }));
 
 function Path() {
@@ -36,12 +41,18 @@ function Path() {
     <Wrapper>
       {loading && <Loading />}
 
-      <ul>
+      <Typography variant='h5' component='div' mb={4}>
+        Challenges
+      </Typography>
+
+      <Grid container spacing={4}>
         {challengeList.length > 0 &&
           challengeList.map((challenge) => (
-            <li key={challenge.id}>{challenge.name}</li>
+            <Grid item xs={12} md={6} lg={4} key={challenge.id}>
+              <PathCard challenge={challenge} />
+            </Grid>
           ))}
-      </ul>
+      </Grid>
     </Wrapper>
   );
 }

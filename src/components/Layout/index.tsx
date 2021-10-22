@@ -17,13 +17,14 @@ const HeaderBox = styled(Box)(({ theme }) => ({
 
 const SidebarBox = styled(Box)(({ theme }) => ({
   gridArea: 'sidebar',
-  // borderRight: '1px solid #EAEEF3',
+  borderRight: '1px solid #EAEEF3',
 }));
 
 const Main = styled(Box)(({ theme }) => ({
   gridArea: 'main',
   // backgroundColor: '#F9F8FD',
-  padding: theme.spacing(2),
+  padding: theme.spacing(2, 8),
+  position: 'relative',
 }));
 
 const FooterBox = styled(Box)(({ theme }) => ({
