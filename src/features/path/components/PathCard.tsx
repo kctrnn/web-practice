@@ -18,6 +18,7 @@ function PathCard({ challenge }: PathCardProps) {
       >
         <CardMedia
           component='img'
+          height='200'
           alt={challenge.name}
           image={challenge.thumbnailImage}
         />
@@ -27,11 +28,16 @@ function PathCard({ challenge }: PathCardProps) {
             {challenge.name}
           </Typography>
 
-          <Typography variant='body1' color='text.secondary' flexGrow={1}>
+          <Typography
+            variant='body2'
+            color='text.secondary'
+            flexGrow={1}
+            lineHeight='1.75'
+          >
             {challenge.description}
           </Typography>
 
-          <Box mt={4} p={2} bgcolor='action.hover' borderRadius={2}>
+          <Box mt={3} p={2} bgcolor='action.hover' borderRadius={2}>
             <Typography variant='body2' color='text.secondary' mb={1}>
               Level
             </Typography>

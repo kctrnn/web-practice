@@ -1,4 +1,4 @@
-import { Grid, LinearProgress, Typography } from '@mui/material';
+import { Grid, LinearProgress, Paper, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {
@@ -8,13 +8,16 @@ import {
 } from 'features/challenge/challengeSlice';
 import { Challenge, PathSlug } from 'models';
 import { useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
+import remarkGfm from 'remark-gfm';
+import Typewriter from 'typewriter-effect';
+import { getPathDesc, getPathIntro, getPathName, getPathRule } from 'utils';
 import PathCard from './components/PathCard';
 
 const SIDEBAR_WIDTH = 240;
 
 const Wrapper = styled(Box)(({ theme }) => ({
-  // position: 'relative',
   paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(2),
 }));
@@ -24,6 +27,56 @@ const Loading = styled(LinearProgress)(({ theme }) => ({
   top: theme.spacing(0),
   right: theme.spacing(0),
   left: `-${SIDEBAR_WIDTH}px`,
+}));
+
+const Description = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(2),
+  border: `1px solid #bba9fb`,
+  borderRadius: theme.shape.borderRadius,
+
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+
+  backgroundColor: 'rgba(80,47,196,0.03)',
+}));
+
+const TypewriterBox = styled(Box)(({ theme }) => ({
+  flex: 1,
+  paddingLeft: theme.spacing(2),
+  fontSize: '1.5rem',
+  fontFamily: `'Lobster', cursive`,
+}));
+
+const Rule = styled(Box)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  padding: theme.spacing(2),
+  border: `1px solid #ffda4d`,
+  borderRadius: theme.shape.borderRadius,
+
+  backgroundColor: 'rgba(232,172,0,0.03)',
+}));
+
+const Intro = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+  marginBottom: theme.spacing(4),
+  width: '70%',
+
+  [theme.breakpoints.down('lg')]: {
+    width: '100%',
+  },
+
+  ul: {
+    paddingLeft: '1.25rem',
+  },
+
+  li: {
+    marginBottom: '.5rem',
+  },
+
+  strong: {
+    fontWeight: 600,
+  },
 }));
 
 function Path() {
@@ -41,8 +94,42 @@ function Path() {
     <Wrapper>
       {loading && <Loading />}
 
-      <Typography variant='h5' component='div' mb={4}>
-        Challenges
+      <Intro variant='outlined'>
+        <Typography component='h1' variant='h5' fontWeight='500'>
+          {getPathName(pathSlug)}
+        </Typography>
+
+        <Typography my={2}>{getPathIntro(pathSlug)}</Typography>
+
+        <Description>
+          <TypewriterBox>
+            <Typewriter
+              options={{
+                strings: ['For those who want to'],
+                autoStart: true,
+                loop: true,
+              }}
+            />
+          </TypewriterBox>
+
+          <Box width='60%'>
+            <ReactMarkdown
+              children={getPathDesc(pathSlug)}
+              remarkPlugins={[remarkGfm]}
+            />
+          </Box>
+        </Description>
+
+        <Rule>
+          <ReactMarkdown
+            children={getPathRule(pathSlug)}
+            remarkPlugins={[remarkGfm]}
+          />
+        </Rule>
+      </Intro>
+
+      <Typography variant='h6' component='div' mb={2}>
+        Projects
       </Typography>
 
       <Grid container spacing={4}>
