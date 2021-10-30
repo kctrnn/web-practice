@@ -1,5 +1,6 @@
 import { Chip, Divider, Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
+import { Images } from 'constants/index';
 import { Link } from 'react-router-dom';
 import { Carousel } from './index';
 
@@ -52,15 +53,17 @@ const PathItem = styled(Link)(({ theme }) => ({
 const Heading = styled(Typography)(({ theme }) => ({
   fontSize: '1.125rem',
   fontWeight: 600,
-  color: theme.palette.text.primary,
+  color: theme.palette.grey[800],
 
   marginTop: '1rem',
   marginBottom: '.5rem',
 }));
 
-const Description = styled(Typography)(() => ({
-  fontSize: '.875rem',
-  color: '#555',
+const Description = styled(Typography)(({ theme }) => ({
+  fontSize: '1rem',
+  color: theme.palette.grey[600],
+  fontFamily: `'Lato', sans-serif`,
+  lineHeight: 1.5,
 }));
 
 const CarouselBox = styled(Box)(({ theme }) => ({
@@ -89,10 +92,7 @@ export const Home = () => {
 
         <Stack direction='row' justifyContent='space-between' flexWrap='wrap'>
           <PathItem to='/paths/responsive-web-developer'>
-            <img
-              src='https://images.unsplash.com/photo-1615455057735-1d108a411194?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80'
-              alt=''
-            />
+            <img src={Images.RESPONSIVE_PATH} alt='' />
             <Heading>Responsive Web Developer</Heading>
             <Description>
               Learn and Practice Responsive Web Development by building 8
@@ -101,10 +101,7 @@ export const Home = () => {
           </PathItem>
 
           <PathItem to='/paths/front-end-developer'>
-            <img
-              src='https://images.unsplash.com/photo-1633230329829-a52df5940e69?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80'
-              alt=''
-            />
+            <img src={Images.FRONTEND_PATH} alt='' />
             <Heading>Front-end Developer</Heading>
             <Description>
               Become Front-end Developer by building 8 real-life projects, you
@@ -113,10 +110,7 @@ export const Home = () => {
           </PathItem>
 
           <PathItem to='/paths/full-stack-developer'>
-            <img
-              src='https://images.unsplash.com/photo-1633204412021-21bb58ad6180?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80'
-              alt=''
-            />
+            <img src={Images.FULLSTACK_PATH} alt='' />
             <Heading>Full-stack Developer</Heading>
             <Description>
               Become a Full-stack developer by building 8 advanced full-stack
