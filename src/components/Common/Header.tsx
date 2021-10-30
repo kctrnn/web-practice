@@ -30,7 +30,7 @@ export const Header = () => {
   return (
     <AppBar position='static' color='transparent' sx={{ boxShadow: 'none' }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        <Logo to='/'>🚀 Web Practice</Logo>
+        <Logo to='/'>Web Practice.</Logo>
 
         {!isLoggedIn && (
           <Stack direction='row' spacing={2} paddingRight={5}>
