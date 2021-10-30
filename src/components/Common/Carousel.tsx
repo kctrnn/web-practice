@@ -116,6 +116,15 @@ export const Carousel = () => {
 
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          arrows: false,
+        },
+      },
+    ],
   };
 
   return (

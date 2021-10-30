@@ -1,4 +1,11 @@
-import { Grid, LinearProgress, Paper, Typography } from '@mui/material';
+import {
+  Chip,
+  Divider,
+  Grid,
+  LinearProgress,
+  Paper,
+  Typography,
+} from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {
@@ -14,6 +21,7 @@ import remarkGfm from 'remark-gfm';
 import Typewriter from 'typewriter-effect';
 import { getPathDesc, getPathIntro, getPathName, getPathRule } from 'utils';
 import PathCard from './components/PathCard';
+import PathProgress from './components/PathProgress';
 
 const SIDEBAR_WIDTH = 240;
 
@@ -59,12 +67,6 @@ const Rule = styled(Box)(({ theme }) => ({
 
 const Intro = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
-  marginBottom: theme.spacing(4),
-  width: '70%',
-
-  [theme.breakpoints.down('lg')]: {
-    width: '100%',
-  },
 
   ul: {
     paddingLeft: '1.25rem',
@@ -94,43 +96,53 @@ function Path() {
     <Wrapper>
       {loading && <Loading />}
 
-      <Intro variant='outlined'>
-        <Typography component='h1' variant='h5' fontWeight='500'>
-          {getPathName(pathSlug)}
-        </Typography>
+      <Grid container spacing={4} mb={4}>
+        <Grid item xs={12} lg={8}>
+          <Intro variant='outlined'>
+            <Typography component='h1' variant='h5' fontWeight='500'>
+              {getPathName(pathSlug)}
+            </Typography>
 
-        <Typography my={2}>{getPathIntro(pathSlug)}</Typography>
+            <Typography my={2}>{getPathIntro(pathSlug)}</Typography>
 
-        <Description>
-          <TypewriterBox>
-            <Typewriter
-              options={{
-                strings: ['For those who want to'],
-                autoStart: true,
-                loop: true,
-              }}
-            />
-          </TypewriterBox>
+            <Description>
+              <TypewriterBox>
+                <Typewriter
+                  options={{
+                    strings: ['For those who want to'],
+                    autoStart: true,
+                    loop: true,
+                  }}
+                />
+              </TypewriterBox>
 
-          <Box width='60%'>
-            <ReactMarkdown
-              children={getPathDesc(pathSlug)}
-              remarkPlugins={[remarkGfm]}
-            />
-          </Box>
-        </Description>
+              <Box width='60%'>
+                <ReactMarkdown
+                  children={getPathDesc(pathSlug)}
+                  remarkPlugins={[remarkGfm]}
+                />
+              </Box>
+            </Description>
 
-        <Rule>
-          <ReactMarkdown
-            children={getPathRule(pathSlug)}
-            remarkPlugins={[remarkGfm]}
-          />
-        </Rule>
-      </Intro>
+            <Rule>
+              <ReactMarkdown
+                children={getPathRule(pathSlug)}
+                remarkPlugins={[remarkGfm]}
+              />
+            </Rule>
+          </Intro>
+        </Grid>
 
-      <Typography variant='h6' component='div' mb={2}>
-        Projects
-      </Typography>
+        <Grid item xs={12} lg={4}>
+          <PathProgress slug={pathSlug} challengeCount={challengeList.length} />
+        </Grid>
+      </Grid>
+
+      <Box mb={3}>
+        <Divider>
+          <Chip label='Projects' variant='outlined' color='primary' />
+        </Divider>
+      </Box>
 
       <Grid container spacing={4}>
         {challengeList.length > 0 &&
@@ -143,4 +155,5 @@ function Path() {
     </Wrapper>
   );
 }
+
 export default Path;

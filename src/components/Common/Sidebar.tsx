@@ -49,10 +49,26 @@ const Image = styled(Box)(({ theme }) => ({
   borderRadius: '.5rem',
   overflow: 'hidden',
 
+  [theme.breakpoints.down('md')]: {
+    height: '2rem',
+  },
+
   '& > img': {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
+  },
+}));
+
+const PathName = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(1, 2),
+
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
+  },
+
+  p: {
+    fontSize: '.75rem',
   },
 }));
 
@@ -82,12 +98,12 @@ export const Sidebar = () => {
                 <img src={getPathImage(pathSlug)} alt={pathSlug} />
               </Image>
 
-              <Box py={1} px={2}>
-                <Typography variant='subtitle2'>Path</Typography>
-                <Typography variant='body2' color='grey.500'>
+              <PathName>
+                <Typography fontWeight={500}>Path</Typography>
+                <Typography color='grey.500'>
                   {getPathName(pathSlug)}
                 </Typography>
-              </Box>
+              </PathName>
             </Box>
           </LinkStyled>
         )}

@@ -24,13 +24,19 @@ function PathCard({ challenge }: PathCardProps) {
         />
 
         <CardContent sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-          <Typography gutterBottom variant='h6' component='div'>
+          <Typography
+            gutterBottom
+            variant='h6'
+            component='div'
+            fontSize='1.125rem'
+          >
             {challenge.name}
           </Typography>
 
           <Typography
-            variant='body2'
-            color='text.secondary'
+            variant='body1'
+            fontFamily='Lato, sans-serif'
+            color='grey.600'
             flexGrow={1}
             lineHeight='1.75'
           >
