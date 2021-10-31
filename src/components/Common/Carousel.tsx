@@ -1,6 +1,6 @@
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { Stack, Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { CAROUSEL_LIST } from 'constants/index';
 import Slider from 'react-slick';
@@ -8,20 +8,19 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 const Item = styled(Box)(() => ({
-  height: '12rem',
-  borderRadius: '.5rem',
+  // height: '12rem',
+  // borderRadius: '.5rem',
 }));
 
 const Image = styled(Box)(({ theme }) => ({
-  flexBasis: '40%',
+  flex: 1,
+  flexShrink: 0,
 
   '& > img': {
     height: '100%',
     width: '100%',
     objectFit: 'cover',
-
-    borderTopRightRadius: '.5rem',
-    borderBottomRightRadius: '.5rem',
+    transform: 'translateX(2rem)',
   },
 
   [theme.breakpoints.down('lg')]: {
@@ -30,24 +29,24 @@ const Image = styled(Box)(({ theme }) => ({
 }));
 
 const Content = styled(Box)(({ theme }) => ({
-  padding: '2rem 1.5rem',
   flex: 1,
+  padding: theme.spacing(4, 0, 4, 4),
 
-  borderTopLeftRadius: '.5rem',
-  borderBottomLeftRadius: '.5rem',
-  border: '1px solid #c9d0da',
+  [theme.breakpoints.down('lg')]: {
+    paddingRight: theme.spacing(4),
+  },
 
   '& > h3': {
     fontSize: '1.125rem',
-    fontWeight: 600,
+    fontWeight: 500,
     marginBottom: '1rem',
+    // color: theme.palette.grey[800],
   },
 
   '& > p': {
-    color: '#555',
-    maxWidth: '65%',
-    fontSize: '.875rem',
-    lineHeight: 1.6,
+    fontFamily: `'Lato', sans-serif`,
+    color: theme.palette.grey[600],
+    lineHeight: 1.5,
 
     [theme.breakpoints.down('lg')]: {
       maxWidth: '75%',
@@ -131,22 +130,26 @@ export const Carousel = () => {
     <Slider {...settings}>
       {CAROUSEL_LIST.map((item, index) => (
         <Item key={index}>
-          <Stack
-            direction='row'
-            maxHeight='100%'
-            justifyContent='space-between'
+          <Paper
+            variant='outlined'
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
           >
             <Content>
               <Typography variant='h6' component='h3'>
                 {item.heading}
               </Typography>
+
               <Typography>{item.description}</Typography>
             </Content>
 
             <Image>
               <img src={item.imgUrl} alt='' />
             </Image>
-          </Stack>
+          </Paper>
         </Item>
       ))}
     </Slider>

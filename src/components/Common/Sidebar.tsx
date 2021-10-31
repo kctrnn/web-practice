@@ -1,9 +1,9 @@
-import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import EmojiObjectsRoundedIcon from '@mui/icons-material/EmojiObjectsRounded';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import HomeMaxIcon from '@mui/icons-material/HomeMax';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import LiveHelpIcon from '@mui/icons-material/LiveHelp';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import TagRoundedIcon from '@mui/icons-material/TagRounded';
 import { Typography } from '@mui/material';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -113,7 +113,7 @@ export const Sidebar = () => {
             <ListItem disableGutters>
               <ListItemButton sx={{ borderRadius: '.5rem' }}>
                 <ListItemIconStyled>
-                  <LocalOfferIcon />
+                  <TagRoundedIcon />
                 </ListItemIconStyled>
 
                 <ListItemTextStyled primary='Overview' disableTypography />
@@ -140,7 +140,7 @@ export const Sidebar = () => {
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
               <ListItemIconStyled>
-                <AspectRatioIcon />
+                <EmojiObjectsRoundedIcon />
               </ListItemIconStyled>
 
               <ListItemTextStyled primary='Solutions' disableTypography />
@@ -152,7 +152,7 @@ export const Sidebar = () => {
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
               <ListItemIconStyled>
-                <LiveHelpIcon />
+                <ForumRoundedIcon />
               </ListItemIconStyled>
 
               <ListItemTextStyled primary='Forum' disableTypography />
