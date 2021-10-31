@@ -5,14 +5,21 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
 import { Challenge } from 'models';
+import { useHistory } from 'react-router-dom';
 
 export interface PathCardProps {
   challenge: Challenge;
 }
 
 function PathCard({ challenge }: PathCardProps) {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push(`/challenges/${challenge.id}`);
+  };
+
   return (
-    <Card sx={{ height: '100%' }}>
+    <Card sx={{ height: '100%' }} onClick={handleClick}>
       <CardActionArea
         sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
       >

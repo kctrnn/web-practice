@@ -37,8 +37,10 @@ function App() {
           </Layout>
         </Route>
 
-        <Route path='/challenges'>
-          <Challenge />
+        <Route path='/challenges/:challengeId'>
+          <Layout>
+            <Challenge />
+          </Layout>
         </Route>
 
         <Route>

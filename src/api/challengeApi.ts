@@ -8,7 +8,7 @@ const challengeApi = {
   },
 
   get(id: string): Promise<Challenge> {
-    const url = `/challenges${id}`;
+    const url = `/challenges/${id}`;
     return axiosClient.get(url);
   },
 };

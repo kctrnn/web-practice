@@ -62,11 +62,14 @@ const Rule = styled(Box)(({ theme }) => ({
   border: `1px solid #ffda4d`,
   borderRadius: theme.shape.borderRadius,
 
-  backgroundColor: 'rgba(232,172,0,0.03)',
+  backgroundColor: 'rgba(232, 172, 0, 0.03)',
 }));
 
 const Intro = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
+  fontFamily: `'Lato', sans-serif`,
+  fontSize: '1.125rem',
+  fontWeight: 400,
 
   ul: {
     paddingLeft: '1.25rem',
@@ -77,7 +80,7 @@ const Intro = styled(Paper)(({ theme }) => ({
   },
 
   strong: {
-    fontWeight: 600,
+    fontWeight: 700,
   },
 }));
 
@@ -103,7 +106,14 @@ function Path() {
               {getPathName(pathSlug)}
             </Typography>
 
-            <Typography my={2}>{getPathIntro(pathSlug)}</Typography>
+            <Typography
+              my={2}
+              fontFamily={`'Lato', sans-serif`}
+              fontSize='1.125rem'
+              color='grey.700'
+            >
+              {getPathIntro(pathSlug)}
+            </Typography>
 
             <Description>
               <TypewriterBox>

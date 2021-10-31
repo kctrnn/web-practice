@@ -52,7 +52,13 @@ function PathProgress({ slug, challengeCount }: PathProgressProps) {
         />
       </Box>
 
-      <Button variant='outlined' fullWidth disabled={!isGetBadge} color='info'>
+      <Button
+        variant={isGetBadge ? 'contained' : 'outlined'}
+        fullWidth
+        disableElevation
+        disabled={!isGetBadge}
+        color='info'
+      >
         Apply for badge
       </Button>
     </Paper>
