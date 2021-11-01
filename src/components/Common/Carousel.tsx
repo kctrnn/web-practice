@@ -13,7 +13,7 @@ const Item = styled(Box)(() => ({
 }));
 
 const Image = styled(Box)(({ theme }) => ({
-  flex: 1,
+  flexBasis: '50%',
   flexShrink: 0,
 
   '& > img': {
