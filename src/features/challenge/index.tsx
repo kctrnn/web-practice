@@ -71,8 +71,8 @@ function Challenge() {
       )}
 
       {challenge && (
-        <Image variant='outlined'>
-          <img src={challenge.thumbnailImage} alt='' />
+        <Image variant="outlined">
+          <img src={challenge.thumbnailImage} alt="" />
         </Image>
       )}
 
@@ -83,7 +83,10 @@ function Challenge() {
           </Grid>
 
           <Grid item xs={12} lg={4}>
-            <ChallengeStart />
+            <ChallengeStart
+              designId={challenge.designId}
+              resourceId={challenge.resourceId}
+            />
           </Grid>
         </Grid>
       )}
