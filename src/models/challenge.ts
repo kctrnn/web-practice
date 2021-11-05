@@ -1,6 +1,7 @@
 import { PathSlug } from 'models';
 
 export interface Challenge {
+  _id?: string;
   id: string;
 
   name: string;
