@@ -1,7 +1,13 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosResponse,
+  AxiosRequestHeaders,
+} from 'axios';
+import { TOKEN } from 'constants/index';
 
 const axiosClient = axios.create({
-  baseURL: 'https://web-practice-api.herokuapp.com/api',
+  baseURL: 'https://api-wp.herokuapp.com/api',
   headers: {
     'content-type': 'application/json',
   },
@@ -10,7 +16,20 @@ const axiosClient = axios.create({
 // Add a request interceptor
 axiosClient.interceptors.request.use(
   function (config: AxiosRequestConfig) {
-    return config;
+    const customHeaders: AxiosRequestHeaders = {};
+
+    const accessToken = localStorage.getItem(TOKEN);
+    if (accessToken) {
+      customHeaders.Authorization = `Bearer ${accessToken}`;
+    }
+
+    return {
+      ...config,
+      headers: {
+        ...customHeaders, // auto attach token
+        ...config.headers, // can override for some requests
+      },
+    };
   },
 
   function (error: AxiosError) {

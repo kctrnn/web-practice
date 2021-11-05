@@ -131,15 +131,16 @@ export const Carousel = () => {
       {CAROUSEL_LIST.map((item, index) => (
         <Item key={index}>
           <Paper
-            variant='outlined'
+            variant="outlined"
             sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
+              borderColor: '#EAEEF3',
             }}
           >
             <Content>
-              <Typography variant='h6' component='h3'>
+              <Typography variant="h6" component="h3">
                 {item.heading}
               </Typography>
 
@@ -147,7 +148,7 @@ export const Carousel = () => {
             </Content>
 
             <Image>
-              <img src={item.imgUrl} alt='' />
+              <img src={item.imgUrl} alt="" />
             </Image>
           </Paper>
         </Item>

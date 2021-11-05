@@ -2,7 +2,8 @@ import { call, delay, fork, put, race, take } from '@redux-saga/core/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import userApi, { AuthResponse } from 'api/userApi';
 import { push } from 'connected-react-router';
-import { LoginPayload, SignupPayload } from 'models';
+import { TOKEN, USER } from 'constants/index';
+import { LoginPayload, SignupPayload, User } from 'models';
 import { toast } from 'react-toastify';
 import {
   login,
@@ -16,9 +17,11 @@ import {
 
 function* handleLogin(payload: LoginPayload) {
   try {
-    const { jwt, user }: AuthResponse = yield call(userApi.login, payload);
+    const { accessToken }: AuthResponse = yield call(userApi.login, payload);
+    localStorage.setItem(TOKEN, accessToken);
 
-    localStorage.setItem('access_token', jwt);
+    const user: User = yield call(userApi.getMe);
+    localStorage.setItem(USER, JSON.stringify(user));
     yield put(loginSuccess(user));
 
     // Show toast success
@@ -35,9 +38,11 @@ function* handleLogin(payload: LoginPayload) {
 
 function* handleRegister(payload: SignupPayload) {
   try {
-    const { jwt, user }: AuthResponse = yield call(userApi.signup, payload);
+    const { accessToken }: AuthResponse = yield call(userApi.signup, payload);
+    localStorage.setItem(TOKEN, accessToken);
 
-    localStorage.setItem('access_token', jwt);
+    const user: User = yield call(userApi.getMe);
+    localStorage.setItem(USER, JSON.stringify(user));
     yield put(signupSuccess(user));
 
     // Show toast success
@@ -54,7 +59,8 @@ function* handleRegister(payload: SignupPayload) {
 
 function* handleLogout() {
   yield delay(1000);
-  localStorage.removeItem('access_token');
+  localStorage.removeItem(TOKEN);
+  localStorage.removeItem(USER);
 
   // Show toast success
   toast.success('Logout successfully', {
@@ -67,7 +73,7 @@ function* handleLogout() {
 
 function* watchAuthFlow() {
   while (true) {
-    const isLoggedIn = Boolean(localStorage.getItem('access_token'));
+    const isLoggedIn = Boolean(localStorage.getItem(TOKEN));
 
     if (!isLoggedIn) {
       const result: [

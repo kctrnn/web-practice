@@ -3,6 +3,7 @@ import Step2 from '../assets/images/step2.svg';
 import Step3 from '../assets/images/step3.svg';
 
 export const TOKEN = 'access_token';
+export const USER = 'user';
 
 export const CAROUSEL_LIST = [
   {

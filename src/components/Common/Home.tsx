@@ -82,17 +82,15 @@ export const Home = () => {
 
       {/* Challenge paths */}
       <PathBox>
-        <Typography variant='h6' component='h2' mb={2}></Typography>
-
         <Box mb={2}>
-          <Divider>
-            <Chip label='Challenge Paths' variant='outlined' color='primary' />
+          <Divider sx={{ borderColor: '#EAEEF3' }}>
+            <Chip label="Challenge Paths" variant="outlined" color="primary" />
           </Divider>
         </Box>
 
-        <Stack direction='row' justifyContent='space-between' flexWrap='wrap'>
-          <PathItem to='/paths/responsive-web-developer'>
-            <img src={Images.RESPONSIVE_PATH} alt='' />
+        <Stack direction="row" justifyContent="space-between" flexWrap="wrap">
+          <PathItem to="/paths/responsive-web-developer">
+            <img src={Images.RESPONSIVE_PATH} alt="" />
             <Heading>Responsive Web Developer</Heading>
             <Description>
               Learn and Practice Responsive Web Development by building 8
@@ -100,8 +98,8 @@ export const Home = () => {
             </Description>
           </PathItem>
 
-          <PathItem to='/paths/front-end-developer'>
-            <img src={Images.FRONTEND_PATH} alt='' />
+          <PathItem to="/paths/front-end-developer">
+            <img src={Images.FRONTEND_PATH} alt="" />
             <Heading>Front-end Developer</Heading>
             <Description>
               Become Front-end Developer by building 8 real-life projects, you
@@ -109,8 +107,8 @@ export const Home = () => {
             </Description>
           </PathItem>
 
-          <PathItem to='/paths/full-stack-developer'>
-            <img src={Images.FULLSTACK_PATH} alt='' />
+          <PathItem to="/paths/full-stack-developer">
+            <img src={Images.FULLSTACK_PATH} alt="" />
             <Heading>Full-stack Developer</Heading>
             <Description>
               Become a Full-stack developer by building 8 advanced full-stack

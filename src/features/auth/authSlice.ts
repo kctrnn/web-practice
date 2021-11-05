@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
+import { USER } from 'constants/index';
 import { LoginPayload, SignupPayload, User } from 'models';
 
 export interface AuthState {
@@ -9,7 +10,7 @@ export interface AuthState {
 }
 
 const initialState: AuthState = {
-  currentUser: {},
+  currentUser: JSON.parse(localStorage.getItem(USER) || 'null') || {},
   logging: false,
   isLoggedIn: false,
 };
