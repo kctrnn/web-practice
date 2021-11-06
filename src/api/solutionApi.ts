@@ -1,10 +1,14 @@
 import { Solution } from 'models';
 import axiosClient from './axiosClient';
 
+export interface SolutionFilter {
+  userId?: string;
+}
+
 const solutionApi = {
-  getAll(userId?: string) {
+  getAll(params: SolutionFilter) {
     const url = '/solutions';
-    return axiosClient.get(url, { params: { userId } });
+    return axiosClient.get(url, { params });
   },
 
   get(solutionId: string) {
