@@ -2,8 +2,14 @@ import TagRoundedIcon from '@mui/icons-material/TagRounded';
 import { Grid, Paper, Skeleton, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import challengeApi from 'api/challengeApi';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { selectCurrentUser } from 'features/auth/authSlice';
+import {
+  fetchSolutionList,
+  selectSolutionList,
+} from 'features/solution/solutionSlice';
 import { Challenge as ChallengeModel } from 'models';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ChallengeIntro from './components/ChallengeIntro';
 import ChallengeStart from './components/ChallengeStart';
@@ -32,10 +38,31 @@ const Name = styled(Typography)(({ theme }) => ({
 }));
 
 function Challenge() {
+  const dispatch = useAppDispatch();
+
   const { challengeId } = useParams<{ challengeId: string }>();
 
   const [challenge, setChallenge] = useState<ChallengeModel>();
   const [loading, setLoading] = useState<boolean>(true);
+
+  const solutionList = useAppSelector(selectSolutionList);
+  const currentUser = useAppSelector(selectCurrentUser);
+  const userId = currentUser._id;
+
+  const currentSolution = useMemo(() => {
+    return solutionList.find((x) => x.challengeId === challenge?.id);
+  }, [challenge?.id, solutionList]);
+
+  const isNew = !Boolean(currentSolution);
+  const isSubmitted = Boolean(currentSolution?.submitted);
+
+  useEffect(() => {
+    dispatch(
+      fetchSolutionList({
+        userId,
+      })
+    );
+  }, [dispatch, userId]);
 
   useEffect(() => {
     (async () => {
@@ -87,6 +114,8 @@ function Challenge() {
             <ChallengeStart
               designId={challenge.designId}
               resourceId={challenge.resourceId}
+              isNew={isNew}
+              isSubmitted={isSubmitted}
             />
           </Grid>
         </Grid>

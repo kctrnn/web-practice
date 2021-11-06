@@ -4,13 +4,13 @@ import { USER } from 'constants/index';
 import { LoginPayload, SignupPayload, User } from 'models';
 
 export interface AuthState {
-  currentUser: User | {};
+  currentUser: User;
   logging: boolean;
   isLoggedIn: boolean;
 }
 
 const initialState: AuthState = {
-  currentUser: JSON.parse(localStorage.getItem(USER) || 'null') || {},
+  currentUser: JSON.parse(localStorage.getItem(USER) || 'null') || ({} as User),
   logging: false,
   isLoggedIn: false,
 };
@@ -36,7 +36,7 @@ const authSlice = createSlice({
 
     logout(state) {
       state.isLoggedIn = false;
-      state.currentUser = {};
+      state.currentUser = {} as User;
     },
 
     signup(state, action: PayloadAction<SignupPayload>) {

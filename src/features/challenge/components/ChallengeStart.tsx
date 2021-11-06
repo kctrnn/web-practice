@@ -27,14 +27,15 @@ const FigmaIcon = () => (
 export interface ChallengeStartProps {
   designId: string;
   resourceId: string;
-  isNew?: boolean;
-  isSubmitted?: boolean;
+  isNew: boolean;
+  isSubmitted: boolean;
 }
 
 function ChallengeStart({
-  isSubmitted = false,
-  isNew = false,
+  isSubmitted,
+  isNew,
   designId,
+  resourceId,
 }: ChallengeStartProps) {
   const isLoggedIn = Boolean(localStorage.getItem(TOKEN));
 
@@ -48,7 +49,7 @@ function ChallengeStart({
         <li>1. Read the challenge's details</li>
         <li>
           2. Start the challenge and download the resources{' '}
-          {!isNew && (
+          {!isSubmitted && !isNew && (
             <IconButton
               color="primary"
               href="https://github.com/C1SE-21/country-quiz/archive/refs/heads/main.zip"
@@ -75,7 +76,7 @@ function ChallengeStart({
       {isNew && (
         <ButtonStyled
           variant={isLoggedIn ? 'contained' : 'outlined'}
-          color="info"
+          color="warning"
           disableElevation
           fullWidth
           disabled={!isLoggedIn}
