@@ -74,20 +74,24 @@ const PathName = styled(Box)(({ theme }) => ({
   },
 }));
 
+export interface SidebarState {
+  pathSlug: PathSlug;
+  challengeId: string;
+}
+
 export const Sidebar = () => {
-  const { pathSlug: pathSlugParam, challengeId } =
-    useParams<{ pathSlug: PathSlug; challengeId: string }>();
+  const { pathSlug: pathSlugParam, challengeId } = useParams<SidebarState>();
+  const isPathMode = Boolean(pathSlugParam || challengeId);
 
   const [pathSlug, setPathSlug] = useState<PathSlug>(pathSlugParam);
-  const isPathMode = Boolean(pathSlug || challengeId);
 
   useEffect(() => {
     if (!challengeId) return;
 
     (async () => {
       try {
-        const challenge = await challengeApi.get(challengeId);
-        setPathSlug(challenge.pathSlug);
+        const { pathSlug } = await challengeApi.get(challengeId);
+        setPathSlug(pathSlug);
       } catch (error) {
         console.log('Fetch challenge failed', error);
       }
@@ -110,16 +114,19 @@ export const Sidebar = () => {
         </LinkStyled>
 
         {isPathMode && (
-          <LinkStyled to={`/paths/${pathSlug}`}>
+          <LinkStyled to={`/paths/${pathSlugParam || pathSlug}`}>
             <Box py={1}>
               <Image>
-                <img src={getPathImage(pathSlug)} alt={pathSlug} />
+                <img
+                  src={getPathImage(pathSlugParam || pathSlug)}
+                  alt={pathSlugParam || pathSlug}
+                />
               </Image>
 
               <PathName>
                 <Typography fontWeight={500}>Path</Typography>
                 <Typography color="grey.500">
-                  {getPathName(pathSlug)}
+                  {getPathName(pathSlugParam || pathSlug)}
                 </Typography>
               </PathName>
             </Box>
@@ -127,7 +134,7 @@ export const Sidebar = () => {
         )}
 
         {isPathMode && (
-          <LinkStyled to={`/paths/${pathSlug}`}>
+          <LinkStyled to={`/paths/${pathSlugParam || pathSlug}`}>
             <ListItem disableGutters>
               <ListItemButton sx={{ borderRadius: '.5rem' }}>
                 <ListItemIconStyled>

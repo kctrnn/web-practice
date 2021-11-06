@@ -5,41 +5,48 @@ import RegisterPage from 'features/auth/pages/RegisterPage';
 import Challenge from 'features/challenge';
 import Dashboard from 'features/dashboard';
 import Path from 'features/path';
+import Solution from 'features/solution';
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
     <>
       <Switch>
-        <Route exact path='/'>
+        <Route exact path="/">
           <Layout>
             <Home />
           </Layout>
         </Route>
 
-        <Route path='/login'>
+        <Route path="/login">
           <LoginPage />
         </Route>
 
-        <Route path='/register'>
+        <Route path="/register">
           <RegisterPage />
         </Route>
 
-        <PrivateRoute path='/dashboard'>
+        <PrivateRoute path="/dashboard">
           <Layout>
             <Dashboard />
           </Layout>
         </PrivateRoute>
 
-        <Route path='/paths/:pathSlug'>
+        <Route path="/paths/:pathSlug">
           <Layout>
             <Path />
           </Layout>
         </Route>
 
-        <Route path='/challenges/:challengeId'>
+        <Route path="/challenges/:challengeId">
           <Layout>
             <Challenge />
+          </Layout>
+        </Route>
+
+        <Route path="/solutions">
+          <Layout>
+            <Solution />
           </Layout>
         </Route>
 
