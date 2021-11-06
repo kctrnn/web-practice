@@ -15,8 +15,8 @@ export type PathSlug =
   | 'front-end-developer'
   | 'full-stack-developer';
 
-export interface ParamList {
-  pathSlug_like: PathSlug;
+// export interface ParamList {
+//   pathSlug_like: PathSlug;
 
-  [key: string]: any;
-}
+//   [key: string]: any;
+// }
