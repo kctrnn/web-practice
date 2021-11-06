@@ -2,6 +2,7 @@ import TagRoundedIcon from '@mui/icons-material/TagRounded';
 import { Grid, Paper, Skeleton, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import challengeApi from 'api/challengeApi';
+import solutionApi from 'api/solutionApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectCurrentUser } from 'features/auth/authSlice';
 import {
@@ -50,8 +51,8 @@ function Challenge() {
   const userId = currentUser._id;
 
   const currentSolution = useMemo(() => {
-    return solutionList.find((x) => x.challengeId === challenge?.id);
-  }, [challenge?.id, solutionList]);
+    return solutionList.find((x) => x.challengeId === challengeId);
+  }, [challengeId, solutionList]);
 
   const isNew = !Boolean(currentSolution);
   const isSubmitted = Boolean(currentSolution?.submitted);
@@ -76,6 +77,25 @@ function Challenge() {
       setLoading(false);
     })();
   }, [challengeId]);
+
+  const handleStartDownload = async () => {
+    if (userId && challengeId) {
+      await solutionApi.add({
+        userId,
+        challengeId,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        submitted: false,
+
+        title: '',
+        description: '',
+        repoUrl: '',
+        demoUrl: '',
+        feedbackRequest: '',
+        submittedAt: 0,
+      });
+    }
+  };
 
   return (
     <Box>
@@ -116,6 +136,7 @@ function Challenge() {
               resourceId={challenge.resourceId}
               isNew={isNew}
               isSubmitted={isSubmitted}
+              onStartDownload={handleStartDownload}
             />
           </Grid>
         </Grid>

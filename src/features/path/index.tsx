@@ -101,16 +101,16 @@ function Path() {
 
       <Grid container spacing={4} mb={4}>
         <Grid item xs={12} lg={8}>
-          <Intro variant='outlined'>
-            <Typography component='h1' variant='h5' fontWeight='500'>
+          <Intro variant="outlined">
+            <Typography component="h1" variant="h5" fontWeight="500">
               {getPathName(pathSlug)}
             </Typography>
 
             <Typography
               my={2}
               fontFamily={`'Lato', sans-serif`}
-              fontSize='1.125rem'
-              color='grey.700'
+              fontSize="1.125rem"
+              color="grey.700"
             >
               {getPathIntro(pathSlug)}
             </Typography>
@@ -126,7 +126,7 @@ function Path() {
                 />
               </TypewriterBox>
 
-              <Box width='60%'>
+              <Box width="60%">
                 <ReactMarkdown
                   children={getPathDesc(pathSlug)}
                   remarkPlugins={[remarkGfm]}
@@ -150,14 +150,14 @@ function Path() {
 
       <Box mb={3}>
         <Divider>
-          <Chip label='Projects' variant='outlined' color='primary' />
+          <Chip label="Projects" variant="outlined" color="primary" />
         </Divider>
       </Box>
 
       <Grid container spacing={4}>
         {challengeList.length > 0 &&
           challengeList.map((challenge) => (
-            <Grid item xs={12} md={6} lg={4} key={challenge.id}>
+            <Grid item xs={12} md={6} lg={4} key={challenge._id}>
               <PathCard challenge={challenge} />
             </Grid>
           ))}

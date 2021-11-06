@@ -29,6 +29,7 @@ export interface ChallengeStartProps {
   resourceId: string;
   isNew: boolean;
   isSubmitted: boolean;
+  onStartDownload: () => void;
 }
 
 function ChallengeStart({
@@ -36,6 +37,7 @@ function ChallengeStart({
   isNew,
   designId,
   resourceId,
+  onStartDownload,
 }: ChallengeStartProps) {
   const isLoggedIn = Boolean(localStorage.getItem(TOKEN));
 
@@ -52,6 +54,7 @@ function ChallengeStart({
           {!isSubmitted && !isNew && (
             <IconButton
               color="primary"
+              // href={`https://github.com/C1SE-21/${resourceId}/archive/refs/heads/main.zip`}
               href="https://github.com/C1SE-21/country-quiz/archive/refs/heads/main.zip"
             >
               <DownloadRoundedIcon fontSize="small" />
@@ -81,6 +84,8 @@ function ChallengeStart({
           fullWidth
           disabled={!isLoggedIn}
           startIcon={<DownloadRoundedIcon fontSize="small" />}
+          onClick={onStartDownload}
+          // href={`https://github.com/C1SE-21/${resourceId}/archive/refs/heads/main.zip`}
           href="https://github.com/C1SE-21/country-quiz/archive/refs/heads/main.zip"
         >
           Start and download
