@@ -40,30 +40,19 @@ const Name = styled(Typography)(({ theme }) => ({
 
 function Challenge() {
   const dispatch = useAppDispatch();
+  const solutionList = useAppSelector(selectSolutionList);
+  const { _id: userId } = useAppSelector(selectCurrentUser);
 
   const { challengeId } = useParams<{ challengeId: string }>();
-
   const [challenge, setChallenge] = useState<ChallengeModel>();
   const [loading, setLoading] = useState<boolean>(true);
-
-  const solutionList = useAppSelector(selectSolutionList);
-  const currentUser = useAppSelector(selectCurrentUser);
-  const userId = currentUser._id;
 
   const currentSolution = useMemo(() => {
     return solutionList.find((x) => x.challengeId === challengeId);
   }, [challengeId, solutionList]);
 
-  const isNew = !Boolean(currentSolution);
+  const isNew = !currentSolution;
   const isSubmitted = Boolean(currentSolution?.submitted);
-
-  useEffect(() => {
-    dispatch(
-      fetchSolutionList({
-        userId,
-      })
-    );
-  }, [dispatch, userId]);
 
   useEffect(() => {
     (async () => {
@@ -77,6 +66,14 @@ function Challenge() {
       setLoading(false);
     })();
   }, [challengeId]);
+
+  useEffect(() => {
+    dispatch(
+      fetchSolutionList({
+        userId,
+      })
+    );
+  }, [dispatch, userId]);
 
   const handleStartDownload = async () => {
     if (userId && challengeId) {
