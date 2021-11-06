@@ -1,5 +1,5 @@
 import TagRoundedIcon from '@mui/icons-material/TagRounded';
-import { Grid, LinearProgress, Paper, Typography } from '@mui/material';
+import { Grid, Paper, Skeleton, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import challengeApi from 'api/challengeApi';
 import { Challenge as ChallengeModel } from 'models';
@@ -8,17 +8,7 @@ import { useParams } from 'react-router-dom';
 import ChallengeIntro from './components/ChallengeIntro';
 import ChallengeStart from './components/ChallengeStart';
 
-const SIDEBAR_WIDTH = 240;
-
-const Loading = styled(LinearProgress)(({ theme }) => ({
-  position: 'absolute',
-  top: theme.spacing(0),
-  right: theme.spacing(0),
-  left: `-${SIDEBAR_WIDTH}px`,
-}));
-
 const Image = styled(Paper)(({ theme }) => ({
-  minHeight: 590,
   marginBottom: theme.spacing(4),
   // borderColor: '#e5eaf0',
   borderColor: '#EAEEF3',
@@ -32,7 +22,7 @@ const Image = styled(Paper)(({ theme }) => ({
 }));
 
 const Name = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
+  marginBottom: theme.spacing(4),
   fontSize: '1.5rem',
   fontWeight: 500,
 
@@ -62,7 +52,18 @@ function Challenge() {
 
   return (
     <Box>
-      {loading && <Loading />}
+      {loading && (
+        <Box>
+          <Skeleton width="50%" />
+          <Skeleton />
+          <Skeleton
+            variant="rectangular"
+            width="100%"
+            height={500}
+            sx={{ mt: 2 }}
+          />
+        </Box>
+      )}
 
       {challenge && (
         <Name>

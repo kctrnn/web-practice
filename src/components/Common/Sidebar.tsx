@@ -11,7 +11,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Box, styled } from '@mui/system';
+import challengeApi from 'api/challengeApi';
 import { PathSlug } from 'models';
+import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { getPathImage, getPathName } from 'utils';
 
@@ -73,20 +75,36 @@ const PathName = styled(Box)(({ theme }) => ({
 }));
 
 export const Sidebar = () => {
-  const { pathSlug } = useParams<{ pathSlug: PathSlug }>();
-  const isPathMode = Boolean(pathSlug);
+  const { pathSlug: pathSlugParam, challengeId } =
+    useParams<{ pathSlug: PathSlug; challengeId: string }>();
+
+  const [pathSlug, setPathSlug] = useState<PathSlug>(pathSlugParam);
+  const isPathMode = Boolean(pathSlug || challengeId);
+
+  useEffect(() => {
+    if (!challengeId) return;
+
+    (async () => {
+      try {
+        const challenge = await challengeApi.get(challengeId);
+        setPathSlug(challenge.pathSlug);
+      } catch (error) {
+        console.log('Fetch challenge failed', error);
+      }
+    })();
+  }, [challengeId]);
 
   return (
     <Box px={2} pt={1}>
       <List>
-        <LinkStyled exact to='/'>
+        <LinkStyled exact to="/">
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
               <ListItemIconStyled>
                 {isPathMode ? <KeyboardBackspaceIcon /> : <HomeMaxIcon />}
               </ListItemIconStyled>
 
-              <ListItemTextStyled primary='Home' disableTypography />
+              <ListItemTextStyled primary="Home" disableTypography />
             </ListItemButton>
           </ListItem>
         </LinkStyled>
@@ -100,7 +118,7 @@ export const Sidebar = () => {
 
               <PathName>
                 <Typography fontWeight={500}>Path</Typography>
-                <Typography color='grey.500'>
+                <Typography color="grey.500">
                   {getPathName(pathSlug)}
                 </Typography>
               </PathName>
@@ -116,46 +134,46 @@ export const Sidebar = () => {
                   <TagRoundedIcon />
                 </ListItemIconStyled>
 
-                <ListItemTextStyled primary='Overview' disableTypography />
+                <ListItemTextStyled primary="Overview" disableTypography />
               </ListItemButton>
             </ListItem>
           </LinkStyled>
         )}
 
         {!isPathMode && (
-          <LinkStyled to='/dashboard'>
+          <LinkStyled to="/dashboard">
             <ListItem disableGutters>
               <ListItemButton sx={{ borderRadius: '.5rem' }}>
                 <ListItemIconStyled>
                   <DashboardIcon />
                 </ListItemIconStyled>
 
-                <ListItemTextStyled primary='Dashboard' disableTypography />
+                <ListItemTextStyled primary="Dashboard" disableTypography />
               </ListItemButton>
             </ListItem>
           </LinkStyled>
         )}
 
-        <LinkStyled to='/solutions'>
+        <LinkStyled to="/solutions">
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
               <ListItemIconStyled>
                 <EmojiObjectsRoundedIcon />
               </ListItemIconStyled>
 
-              <ListItemTextStyled primary='Solutions' disableTypography />
+              <ListItemTextStyled primary="Solutions" disableTypography />
             </ListItemButton>
           </ListItem>
         </LinkStyled>
 
-        <LinkStyled to='/forum'>
+        <LinkStyled to="/forum">
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
               <ListItemIconStyled>
                 <ForumRoundedIcon />
               </ListItemIconStyled>
 
-              <ListItemTextStyled primary='Forum' disableTypography />
+              <ListItemTextStyled primary="Forum" disableTypography />
             </ListItemButton>
           </ListItem>
         </LinkStyled>
