@@ -7,6 +7,7 @@ import {
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import authReducer from 'features/auth/authSlice';
 import challengeReducer from 'features/challenge/challengeSlice';
+import dashboardReducer from 'features/dashboard/dashboardSlice';
 import solutionReducer from 'features/solution/solutionSlice';
 import createSagaMiddleware from 'redux-saga';
 import { history } from 'utils';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   challenge: challengeReducer,
   solution: solutionReducer,
+  dashboard: dashboardReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

@@ -8,6 +8,9 @@ export interface Solution {
   repoUrl: string;
   feedbackRequest: string;
 
+  feedbacks: string[];
+  upvotes: string[];
+
   challengeId: string;
   userId: string;
 

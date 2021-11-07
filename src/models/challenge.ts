@@ -16,7 +16,4 @@ export interface Challenge {
 
   pathSlug: PathSlug;
   tags: Array<string>;
-
-  createdAt?: number;
-  updatedAt?: number;
 }
