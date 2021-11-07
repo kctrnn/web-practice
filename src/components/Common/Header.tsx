@@ -21,13 +21,12 @@ import { styled } from '@mui/system';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { TOKEN } from 'constants/index';
 import { logout, selectCurrentUser } from 'features/auth/authSlice';
-import { User } from 'models';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const isLoggedIn = Boolean(localStorage.getItem(TOKEN));
-  const currentUser = useAppSelector(selectCurrentUser) as User;
+  const currentUser = useAppSelector(selectCurrentUser);
   const dispatch = useAppDispatch();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -68,14 +67,11 @@ export const Header = () => {
     },
   }));
 
-  const StyledMenuItem = styled(MenuItem)(() => ({
+  const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
     borderRadius: '8px',
     marginBottom: '.5rem',
     padding: '.5rem .75rem',
-
-    '&:last-child': {
-      color: '#EB5757',
-    },
+    color: theme.palette.text.primary,
   }));
 
   const StyledAvatar = styled(Avatar)(({ theme }) => ({
@@ -91,6 +87,14 @@ export const Header = () => {
     },
   }));
 
+  const Name = styled(Typography)(() => ({
+    fontSize: '.75rem',
+    textTransform: 'capitalize',
+    fontWeight: 600,
+    margin: '0 .5rem',
+    userSelect: 'none',
+  }));
+
   return (
     <>
       <AppBar position="static" color="transparent" sx={{ boxShadow: 'none' }}>
@@ -101,13 +105,7 @@ export const Header = () => {
             <Stack
               direction="row"
               spacing={2}
-              sx={{
-                pr: {
-                  sm: 1,
-                  md: 3,
-                  lg: 5,
-                },
-              }}
+              sx={{ pr: { sm: 1, md: 3, lg: 5 } }}
             >
               <Link to="/login">
                 <Button>
@@ -125,19 +123,12 @@ export const Header = () => {
 
           {isLoggedIn && (
             <Button
-              size="small"
               variant="outlined"
-              disableElevation
-              onClick={handleOpenMenu}
               color="inherit"
-              sx={{
-                borderColor: '#EAEEF3',
-                mr: {
-                  sm: 1,
-                  md: 3,
-                  lg: 5,
-                },
-              }}
+              size="small"
+              disableElevation
+              sx={{ borderColor: '#EAEEF3', mr: { sm: 1, md: 3, lg: 5 } }}
+              onClick={handleOpenMenu}
             >
               <StyledAvatar
                 variant="rounded"
@@ -145,18 +136,7 @@ export const Header = () => {
                 alt=""
               />
 
-              <Typography
-                component="h4"
-                sx={{
-                  fontSize: '.75rem',
-                  textTransform: 'capitalize',
-                  fontWeight: 600,
-                  mx: '.5rem',
-                  userSelect: 'none',
-                }}
-              >
-                {currentUser?.name}
-              </Typography>
+              <Name>{currentUser?.name}</Name>
 
               {Boolean(anchorEl) ? (
                 <KeyboardArrowUpRoundedIcon />
@@ -165,57 +145,59 @@ export const Header = () => {
               )}
             </Button>
           )}
-
-          <StyledMenu
-            keepMounted
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleCloseMenu}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-          >
-            <StyledMenuItem>
-              <ListItemIcon>
-                <DashboardIcon fontSize="small" />
-              </ListItemIcon>
-
-              <StyledListItemText primary="My Dashboard" />
-            </StyledMenuItem>
-
-            <StyledMenuItem>
-              <ListItemIcon>
-                <AccountCircle fontSize="small" />
-              </ListItemIcon>
-
-              <StyledListItemText primary="My Portfolio" />
-            </StyledMenuItem>
-
-            <StyledMenuItem>
-              <ListItemIcon>
-                <SettingsRoundedIcon fontSize="small" />
-              </ListItemIcon>
-
-              <StyledListItemText primary="Setting" />
-            </StyledMenuItem>
-
-            <Divider />
-
-            <StyledMenuItem onClick={handleLogoutClick}>
-              <ListItemIcon sx={{ color: '#EB5757' }}>
-                <ExitToAppRoundedIcon fontSize="small" color="inherit" />
-              </ListItemIcon>
-
-              <StyledListItemText primary="Logout" />
-            </StyledMenuItem>
-          </StyledMenu>
         </Toolbar>
       </AppBar>
+
+      <StyledMenu
+        keepMounted
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleCloseMenu}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <Link to="/dashboard">
+          <StyledMenuItem>
+            <ListItemIcon>
+              <DashboardIcon fontSize="small" />
+            </ListItemIcon>
+
+            <StyledListItemText primary="My Dashboard" />
+          </StyledMenuItem>
+        </Link>
+
+        <StyledMenuItem>
+          <ListItemIcon>
+            <AccountCircle fontSize="small" />
+          </ListItemIcon>
+
+          <StyledListItemText primary="My Portfolio" />
+        </StyledMenuItem>
+
+        <StyledMenuItem>
+          <ListItemIcon>
+            <SettingsRoundedIcon fontSize="small" />
+          </ListItemIcon>
+
+          <StyledListItemText primary="Setting" />
+        </StyledMenuItem>
+
+        <Divider />
+
+        <StyledMenuItem onClick={handleLogoutClick} sx={{ color: '#EB5757' }}>
+          <ListItemIcon sx={{ color: 'inherit' }}>
+            <ExitToAppRoundedIcon fontSize="small" />
+          </ListItemIcon>
+
+          <StyledListItemText primary="Logout" />
+        </StyledMenuItem>
+      </StyledMenu>
     </>
   );
 };

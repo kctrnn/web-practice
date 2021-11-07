@@ -9,7 +9,7 @@ export interface Solution {
   feedbackRequest: string;
 
   feedbacks: string[];
-  upvotes: string[];
+  votes: string[];
 
   challengeId: string;
   userId: string;

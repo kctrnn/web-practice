@@ -88,7 +88,7 @@ function Challenge() {
         submittedAt: 0,
 
         feedbacks: [],
-        upvotes: [],
+        votes: [],
       });
     }
 

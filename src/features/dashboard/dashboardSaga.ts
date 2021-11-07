@@ -21,15 +21,15 @@ function* fetchStatistics() {
   });
 
   const totalSolution = solutions.filter((x) => x.submitted).length;
-  const totalUpVote = solutions.reduce(
-    (total, solution) => total + solution.upvotes?.length || 0,
+  const totalVote = solutions.reduce(
+    (total, solution) => total + solution.votes.length,
     0
   );
 
   const statistics: DashboardStatistics = {
     totalBadge: 3,
     totalSolution,
-    totalUpVote,
+    totalVote,
   };
 
   yield put(setStatistics(statistics));
@@ -58,8 +58,8 @@ function* fetchProjectList() {
     .filter((x) => x.submitted)
     .map((solution, idx) => ({
       ...challenges[idx],
-      upVoteLength: solution.upvotes?.length || 0,
-      feedbackLength: solution.feedbacks?.length || 0,
+      voteLength: solution.votes.length,
+      feedbackLength: solution.feedbacks.length,
     }));
 
   yield put(setOnGoingProjectList(onGoingProjectList));

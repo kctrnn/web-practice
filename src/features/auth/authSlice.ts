@@ -10,7 +10,7 @@ export interface AuthState {
 }
 
 const initialState: AuthState = {
-  currentUser: JSON.parse(localStorage.getItem(USER) || 'null') || ({} as User),
+  currentUser: JSON.parse(localStorage.getItem(USER) || '{}') || ({} as User),
   logging: false,
   isLoggedIn: false,
 };

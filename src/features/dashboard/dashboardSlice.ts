@@ -3,7 +3,7 @@ import { RootState } from 'app/store';
 import { Project } from 'models';
 
 export interface DashboardStatistics {
-  totalUpVote: number;
+  totalVote: number;
   totalSolution: number;
   totalBadge: number;
 }
@@ -22,7 +22,7 @@ const initialState: DashboardState = {
   solutionList: [],
 
   statistics: {
-    totalUpVote: 0,
+    totalVote: 0,
     totalSolution: 0,
     totalBadge: 0,
   },
