@@ -86,6 +86,9 @@ function Challenge() {
         demoUrl: '',
         feedbackRequest: '',
         submittedAt: 0,
+
+        feedbacks: [],
+        upvotes: [],
       });
     }
 

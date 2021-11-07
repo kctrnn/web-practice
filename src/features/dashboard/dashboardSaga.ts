@@ -67,7 +67,6 @@ function* fetchProjectList() {
 }
 
 function* handleFetchDashboardData() {
-  console.log(111);
   try {
     yield all([call(fetchStatistics), call(fetchProjectList)]);
 
