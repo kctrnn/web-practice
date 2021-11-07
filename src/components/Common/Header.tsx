@@ -50,6 +50,8 @@ export const Header = () => {
     fontWeight: 700,
     fontFamily: `'Raleway', sans-serif`,
     color: theme.palette.text.primary,
+
+    // backgroundColor: theme.palette.primary.main,
   }));
 
   const ButtonText = styled(Typography)(() => ({
@@ -123,6 +125,7 @@ export const Header = () => {
 
           {isLoggedIn && (
             <Button
+              size="small"
               variant="outlined"
               disableElevation
               onClick={handleOpenMenu}
@@ -145,7 +148,7 @@ export const Header = () => {
               <Typography
                 component="h4"
                 sx={{
-                  fontSize: '.875rem',
+                  fontSize: '.75rem',
                   textTransform: 'capitalize',
                   fontWeight: 600,
                   mx: '.5rem',
