@@ -8,8 +8,8 @@ import {
   fetchDashboardData,
   fetchDashboardDataFailed,
   fetchDashboardDataSuccess,
-  setOnGoingProjectList,
-  setSolutionList,
+  setOngoingProjectList,
+  setCompletedProjectList,
   setStatistics,
 } from './dashboardSlice';
 
@@ -37,33 +37,37 @@ function* fetchStatistics() {
 
 function* fetchProjectList() {
   const { _id: userId } = JSON.parse(localStorage.getItem(USER) || '{}');
-
-  const solutions: Solution[] = yield call(solutionApi.getAll, {
-    userId,
-  });
+  const solutions: Solution[] = yield call(solutionApi.getAll, { userId });
 
   const callList = solutions.map((solution) =>
     call(challengeApi.get, solution.challengeId)
   );
 
   const challenges: Challenge[] = yield all(callList);
-  const onGoingProjectList: Project[] = solutions
+
+  const ongoingProjectList: Project[] = solutions
     .filter((x) => !x.submitted)
-    .map((solution, idx) => ({
-      ...challenges[idx],
-      createdAt: solution.createdAt,
-    }));
+    .map((solution) => {
+      const idx = challenges.findIndex((x) => x._id === solution.challengeId);
+      return {
+        ...challenges[idx],
+        createdAt: solution.createdAt,
+      };
+    });
 
   const completedProjectList: Project[] = solutions
     .filter((x) => x.submitted)
-    .map((solution, idx) => ({
-      ...challenges[idx],
-      voteLength: solution.votes.length,
-      feedbackLength: solution.feedbacks.length,
-    }));
+    .map((solution) => {
+      const idx = challenges.findIndex((x) => x._id === solution.challengeId);
+      return {
+        ...challenges[idx],
+        voteLength: solution.votes.length,
+        feedbackLength: solution.feedbacks.length,
+      };
+    });
 
-  yield put(setOnGoingProjectList(onGoingProjectList));
-  yield put(setSolutionList(completedProjectList));
+  yield put(setOngoingProjectList(ongoingProjectList));
+  yield put(setCompletedProjectList(completedProjectList));
 }
 
 function* handleFetchDashboardData() {

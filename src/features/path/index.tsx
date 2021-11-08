@@ -2,19 +2,24 @@ import {
   Chip,
   Divider,
   Grid,
-  LinearProgress,
   Paper,
+  Skeleton,
   Typography,
 } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { selectCurrentUser } from 'features/auth/authSlice';
 import {
   fetchChallengeList,
   selectChallengeList,
   selectChallengeLoading,
 } from 'features/challenge/challengeSlice';
+import {
+  fetchSolutionList,
+  selectSolutionList,
+} from 'features/solution/solutionSlice';
 import { Challenge, PathSlug } from 'models';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
 import remarkGfm from 'remark-gfm';
@@ -23,18 +28,9 @@ import { getPathDesc, getPathIntro, getPathName, getPathRule } from 'utils';
 import PathCard from './components/PathCard';
 import PathProgress from './components/PathProgress';
 
-const SIDEBAR_WIDTH = 240;
-
 const Wrapper = styled(Box)(({ theme }) => ({
   paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(2),
-}));
-
-const Loading = styled(LinearProgress)(({ theme }) => ({
-  position: 'absolute',
-  top: theme.spacing(0),
-  right: theme.spacing(0),
-  left: `-${SIDEBAR_WIDTH}px`,
 }));
 
 const Description = styled(Box)(({ theme }) => ({
@@ -90,15 +86,27 @@ function Path() {
 
   const challengeList: Challenge[] = useAppSelector(selectChallengeList);
   const loading = useAppSelector(selectChallengeLoading);
+  const solutionList = useAppSelector(selectSolutionList);
+  const { _id: userId } = useAppSelector(selectCurrentUser);
 
   useEffect(() => {
     dispatch(fetchChallengeList(pathSlug));
   }, [pathSlug, dispatch]);
 
+  useEffect(() => {
+    dispatch(fetchSolutionList({ userId }));
+  }, [dispatch, userId]);
+
+  const challengeCompleted = useMemo(() => {
+    const challengeIdList = challengeList.map((x) => x._id);
+    const solutionByPath = solutionList.filter(
+      (x) => x.submitted && challengeIdList.includes(x.challengeId)
+    );
+    return solutionByPath.length;
+  }, [challengeList, solutionList]);
+
   return (
     <Wrapper>
-      {loading && <Loading />}
-
       <Grid container spacing={4} mb={4}>
         <Grid item xs={12} lg={8}>
           <Intro variant="outlined">
@@ -144,7 +152,11 @@ function Path() {
         </Grid>
 
         <Grid item xs={12} lg={4}>
-          <PathProgress slug={pathSlug} challengeCount={challengeList.length} />
+          <PathProgress
+            slug={pathSlug}
+            challengeCount={challengeList.length}
+            challengeCompleted={challengeCompleted}
+          />
         </Grid>
       </Grid>
 
@@ -154,14 +166,32 @@ function Path() {
         </Divider>
       </Box>
 
-      <Grid container spacing={4}>
-        {challengeList.length > 0 &&
-          challengeList.map((challenge) => (
+      {loading && (
+        <Grid container spacing={4}>
+          {Array.from(new Array(8)).map((x, idx) => (
+            <Grid item xs={12} md={6} lg={4} key={idx}>
+              <Skeleton
+                variant="rectangular"
+                height={200}
+                width="100%"
+              ></Skeleton>
+              <Skeleton width="50%"></Skeleton>
+              <Skeleton></Skeleton>
+              <Skeleton></Skeleton>
+            </Grid>
+          ))}
+        </Grid>
+      )}
+
+      {!loading && (
+        <Grid container spacing={4}>
+          {challengeList.map((challenge) => (
             <Grid item xs={12} md={6} lg={4} key={challenge._id}>
               <PathCard challenge={challenge} />
             </Grid>
           ))}
-      </Grid>
+        </Grid>
+      )}
     </Wrapper>
   );
 }

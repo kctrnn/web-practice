@@ -10,16 +10,16 @@ export interface DashboardStatistics {
 
 export interface DashboardState {
   loading: boolean;
-  onGoingProjectList: Project[];
-  solutionList: Project[];
+  ongoingProjectList: Project[];
+  completedProjectList: Project[];
 
   statistics: DashboardStatistics;
 }
 
 const initialState: DashboardState = {
   loading: false,
-  onGoingProjectList: [],
-  solutionList: [],
+  ongoingProjectList: [],
+  completedProjectList: [],
 
   statistics: {
     totalVote: 0,
@@ -48,12 +48,12 @@ const dashboardSlice = createSlice({
       state.statistics = action.payload;
     },
 
-    setOnGoingProjectList(state, action: PayloadAction<Project[]>) {
-      state.onGoingProjectList = action.payload;
+    setOngoingProjectList(state, action: PayloadAction<Project[]>) {
+      state.ongoingProjectList = action.payload;
     },
 
-    setSolutionList(state, action: PayloadAction<Project[]>) {
-      state.solutionList = action.payload;
+    setCompletedProjectList(state, action: PayloadAction<Project[]>) {
+      state.completedProjectList = action.payload;
     },
   },
 });
@@ -63,16 +63,16 @@ export const {
   fetchDashboardData,
   fetchDashboardDataFailed,
   fetchDashboardDataSuccess,
-  setOnGoingProjectList,
-  setSolutionList,
+  setOngoingProjectList,
+  setCompletedProjectList,
   setStatistics,
 } = dashboardSlice.actions;
 
 // selectors
-export const selectOnGoingProjectList = (state: RootState) =>
-  state.dashboard.onGoingProjectList;
-export const selectSolutionList = (state: RootState) =>
-  state.dashboard.solutionList;
+export const selectOngoingProjectList = (state: RootState) =>
+  state.dashboard.ongoingProjectList;
+export const selectCompletedProjectList = (state: RootState) =>
+  state.dashboard.completedProjectList;
 export const selectDashboardLoading = (state: RootState) =>
   state.dashboard.loading;
 export const selectDashboardStatistics = (state: RootState) =>

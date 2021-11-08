@@ -147,7 +147,7 @@ export const Sidebar = () => {
           </LinkStyled>
         )}
 
-        {!isPathMode && (
+        {/* {!isPathMode && (
           <LinkStyled to="/dashboard">
             <ListItem disableGutters>
               <ListItemButton sx={{ borderRadius: '.5rem' }}>
@@ -159,7 +159,18 @@ export const Sidebar = () => {
               </ListItemButton>
             </ListItem>
           </LinkStyled>
-        )}
+        )} */}
+        <LinkStyled to="/dashboard">
+          <ListItem disableGutters>
+            <ListItemButton sx={{ borderRadius: '.5rem' }}>
+              <ListItemIconStyled>
+                <DashboardIcon />
+              </ListItemIconStyled>
+
+              <ListItemTextStyled primary="Dashboard" disableTypography />
+            </ListItemButton>
+          </ListItem>
+        </LinkStyled>
 
         <LinkStyled to="/solutions">
           <ListItem disableGutters>
