@@ -1,9 +1,10 @@
-import { Home, NotFound, PrivateRoute } from 'components/Common';
-import Layout from 'components/Layout';
+import { NotFound, PrivateRoute } from 'components/Common';
+import { GeneralLayout, Home, SevenStep } from 'components/Layout';
 import LoginPage from 'features/auth/pages/LoginPage';
 import RegisterPage from 'features/auth/pages/RegisterPage';
 import Challenge from 'features/challenge';
 import Dashboard from 'features/dashboard';
+import Forum from 'features/forum';
 import Path from 'features/path';
 import Solution from 'features/solution';
 import { Route, Switch } from 'react-router-dom';
@@ -13,9 +14,9 @@ function App() {
     <>
       <Switch>
         <Route exact path="/">
-          <Layout>
+          <GeneralLayout>
             <Home />
-          </Layout>
+          </GeneralLayout>
         </Route>
 
         <Route path="/login">
@@ -27,27 +28,39 @@ function App() {
         </Route>
 
         <PrivateRoute path="/dashboard">
-          <Layout>
+          <GeneralLayout>
             <Dashboard />
-          </Layout>
+          </GeneralLayout>
         </PrivateRoute>
 
         <Route path="/paths/:pathSlug">
-          <Layout>
+          <GeneralLayout>
             <Path />
-          </Layout>
+          </GeneralLayout>
         </Route>
 
         <Route path="/challenges/:challengeId">
-          <Layout>
+          <GeneralLayout>
             <Challenge />
-          </Layout>
+          </GeneralLayout>
         </Route>
 
         <Route path="/solutions">
-          <Layout>
+          <GeneralLayout>
             <Solution />
-          </Layout>
+          </GeneralLayout>
+        </Route>
+
+        <Route path="/forum">
+          <GeneralLayout>
+            <Forum />
+          </GeneralLayout>
+        </Route>
+
+        <Route path="/seven-step">
+          <GeneralLayout>
+            <SevenStep />
+          </GeneralLayout>
         </Route>
 
         <Route>

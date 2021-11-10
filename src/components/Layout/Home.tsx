@@ -1,8 +1,8 @@
 import { Chip, Divider, Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
+import { Carousel } from 'components/Common';
 import { Images } from 'constants/index';
 import { Link } from 'react-router-dom';
-import { Carousel } from './index';
 
 const Container = styled(Box)(() => ({
   height: '100%',

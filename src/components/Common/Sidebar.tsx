@@ -3,6 +3,7 @@ import EmojiObjectsRoundedIcon from '@mui/icons-material/EmojiObjectsRounded';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import HomeMaxIcon from '@mui/icons-material/HomeMax';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import StarsRoundedIcon from '@mui/icons-material/StarsRounded';
 import TagRoundedIcon from '@mui/icons-material/TagRounded';
 import { Typography } from '@mui/material';
 import List from '@mui/material/List';
@@ -192,6 +193,21 @@ export const Sidebar = () => {
               </ListItemIconStyled>
 
               <ListItemTextStyled primary="Forum" disableTypography />
+            </ListItemButton>
+          </ListItem>
+        </LinkStyled>
+
+        <LinkStyled to="/seven-step">
+          <ListItem disableGutters>
+            <ListItemButton sx={{ borderRadius: '.5rem' }}>
+              <ListItemIconStyled>
+                <StarsRoundedIcon />
+              </ListItemIconStyled>
+
+              <ListItemTextStyled
+                primary="7 steps to start"
+                disableTypography
+              />
             </ListItemButton>
           </ListItem>
         </LinkStyled>

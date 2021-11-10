@@ -1,5 +1,7 @@
 import { Box, styled } from '@mui/system';
-import { Footer, Header, Sidebar } from 'components/Common';
+import { Sidebar } from 'components/Common';
+import { Footer } from './Footer';
+import { Header } from './Header';
 
 const Container = styled(Box)(({ theme }) => ({
   minHeight: '100vh',
@@ -47,11 +49,11 @@ const FooterBox = styled(Box)(({ theme }) => ({
   borderTop: '1px solid #EAEEF3',
 }));
 
-export interface LayoutProps {
+export interface GeneralLayoutProps {
   children: JSX.Element;
 }
 
-function Layout({ children }: LayoutProps) {
+export function GeneralLayout({ children }: GeneralLayoutProps) {
   return (
     <Container>
       <HeaderBox>
@@ -70,5 +72,3 @@ function Layout({ children }: LayoutProps) {
     </Container>
   );
 }
-
-export default Layout;
