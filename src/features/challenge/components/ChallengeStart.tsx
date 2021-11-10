@@ -55,7 +55,7 @@ function ChallengeStart({
             <IconButton
               color="primary"
               // href={`https://github.com/C1SE-21/${resourceId}/archive/refs/heads/main.zip`}
-              href="https://github.com/C1SE-21/country-quiz/archive/refs/heads/main.zip"
+              href="https://github.com/C1SE-21/cat-wiki/archive/refs/heads/main.zip"
             >
               <DownloadRoundedIcon fontSize="small" />
             </IconButton>
@@ -86,7 +86,7 @@ function ChallengeStart({
           startIcon={<DownloadRoundedIcon fontSize="small" />}
           onClick={onStartDownload}
           // href={`https://github.com/C1SE-21/${resourceId}/archive/refs/heads/main.zip`}
-          href="https://github.com/C1SE-21/country-quiz/archive/refs/heads/main.zip"
+          href="https://github.com/C1SE-21/cat-wiki/archive/refs/heads/main.zip"
         >
           Start and download
         </ButtonStyled>
