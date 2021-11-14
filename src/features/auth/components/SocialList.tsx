@@ -2,16 +2,16 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Button, Stack } from '@mui/material';
 
-export interface SocialListProps {
-  isRegisterMode?: boolean;
-}
+// export interface SocialListProps {
+//   isRegisterMode?: boolean;
+// }
 
-function SocialList({ isRegisterMode = false }: SocialListProps) {
+function SocialList() {
   return (
-    <Stack direction='row' my={4} spacing={2}>
+    <Stack direction="row" my={4} spacing={2}>
       <Button
-        variant='contained'
-        size='large'
+        variant="contained"
+        size="large"
         disableElevation
         startIcon={<GitHubIcon />}
         sx={{
@@ -22,13 +22,13 @@ function SocialList({ isRegisterMode = false }: SocialListProps) {
           ':hover': { bgcolor: 'grey.900' },
         }}
       >
-        {isRegisterMode ? 'Sign up with Github' : 'Sign in with Github'}
+        Continue with Github
       </Button>
 
       <Button
-        variant='contained'
+        variant="contained"
         disableElevation
-        size='large'
+        size="large"
         sx={{
           bgcolor: '#f2f2f2',
           color: '#6e6d7a',

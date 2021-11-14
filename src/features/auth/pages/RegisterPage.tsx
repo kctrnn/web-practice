@@ -67,39 +67,39 @@ function RegisterPage() {
   };
 
   return (
-    <Stack direction='row' minHeight='100vh'>
+    <Stack direction="row" minHeight="100vh">
       <ArtworkImage>
-        <img src={Images.SIGNUP_ARTWORK} alt='signup-artwork' />
+        <img src={Images.SIGNUP_ARTWORK} alt="signup-artwork" />
       </ArtworkImage>
 
       <FormContainer>
         <HeaderContainer>
-          <LinkStyled to='/'>
+          <LinkStyled to="/">
             <Button
-              color='inherit'
-              size='small'
+              color="inherit"
+              size="small"
               startIcon={<KeyboardBackspaceRoundedIcon />}
             >
               Home page
             </Button>
           </LinkStyled>
 
-          <Typography fontSize='.875rem'>
-            Already a member? <Link to='/login'>Sign In</Link>
+          <Typography fontSize=".875rem">
+            Already a member? <Link to="/login">Sign In</Link>
           </Typography>
         </HeaderContainer>
 
         <Box>
           <Typography
-            component='h1'
-            fontSize='1.5rem'
+            component="h1"
+            fontSize="1.5rem"
             fontWeight={700}
             fontFamily={`'Raleway', sans-serif`}
           >
             Sign up to Web Practice
           </Typography>
 
-          <SocialList isRegisterMode />
+          <SocialList />
           <Divider sx={{ color: 'text.secondary', mb: 2 }}>Or</Divider>
 
           <RegisterForm onSubmit={handleSubmit} />
@@ -107,7 +107,7 @@ function RegisterPage() {
       </FormContainer>
 
       <ArtBy>
-        Art by <a href='https://dribbble.com/'>Dribbble</a>
+        Art by <a href="https://dribbble.com/">Dribbble</a>
       </ArtBy>
     </Stack>
   );

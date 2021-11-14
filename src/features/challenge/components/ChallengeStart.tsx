@@ -30,6 +30,7 @@ export interface ChallengeStartProps {
   isNew: boolean;
   isSubmitted: boolean;
   onStartDownload: (event: any) => void;
+  onSubmitClick: () => void;
 }
 
 function ChallengeStart({
@@ -38,6 +39,7 @@ function ChallengeStart({
   designId,
   resourceId,
   onStartDownload,
+  onSubmitClick,
 }: ChallengeStartProps) {
   const isLoggedIn = Boolean(localStorage.getItem(TOKEN));
 
@@ -112,7 +114,12 @@ function ChallengeStart({
           </a>
 
           {!isSubmitted ? (
-            <ButtonStyled variant="contained" disableElevation color="info">
+            <ButtonStyled
+              variant="contained"
+              disableElevation
+              color="info"
+              onClick={onSubmitClick}
+            >
               Submit solution
             </ButtonStyled>
           ) : (

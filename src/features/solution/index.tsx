@@ -1,8 +1,10 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { NotFound } from 'components/Common';
 import { useEffect } from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import DetailPage from './pages/DetailPage';
 import ListPage from './pages/ListPage';
+import SubmitPage from './pages/SubmitPage';
 import {
   fetchSolutionList,
   selectSolutionFilter,
@@ -29,8 +31,16 @@ const Solution = () => {
           <ListPage />
         </Route>
 
-        <Route path={`${match.url}/:solutionId`}>
+        <Route path={`${match.url}/:solutionId`} exact>
           <DetailPage />
+        </Route>
+
+        <Route path={`${match.url}/:solutionId/submit`}>
+          <SubmitPage />
+        </Route>
+
+        <Route>
+          <NotFound />
         </Route>
       </Switch>
     </>

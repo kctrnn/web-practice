@@ -17,6 +17,7 @@ import ChallengeError from './components/ChallengeError';
 import ChallengeIntro from './components/ChallengeIntro';
 import ChallengeStart from './components/ChallengeStart';
 import ChallengeSuccess from './components/ChallengeSuccess';
+import { useHistory } from 'react-router-dom';
 
 const Image = styled(Paper)(({ theme }) => ({
   marginBottom: theme.spacing(4),
@@ -43,6 +44,7 @@ const Name = styled(Typography)(({ theme }) => ({
 
 function Challenge() {
   const dispatch = useAppDispatch();
+  const history = useHistory();
   const { challengeId } = useParams<{ challengeId: string }>();
 
   const solutionList = useAppSelector(selectSolutionList);
@@ -114,6 +116,10 @@ function Challenge() {
     dispatch(fetchSolutionList({ userId }));
   };
 
+  const handleSubmitClick = () => {
+    history.push(`/solutions/${currentSolution?._id}/submit`);
+  };
+
   return (
     <Box>
       <Modal open={showError} onClose={() => setShowError(false)}>
@@ -162,6 +168,7 @@ function Challenge() {
               isNew={isNew}
               isSubmitted={isSubmitted}
               onStartDownload={handleStartDownload}
+              onSubmitClick={handleSubmitClick}
             />
           </Grid>
         </Grid>
