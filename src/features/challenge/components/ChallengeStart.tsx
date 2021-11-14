@@ -29,7 +29,7 @@ export interface ChallengeStartProps {
   resourceId: string;
   isNew: boolean;
   isSubmitted: boolean;
-  onStartDownload: () => void;
+  onStartDownload: (event: any) => void;
 }
 
 function ChallengeStart({

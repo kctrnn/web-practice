@@ -4,6 +4,7 @@ import { Box, styled } from '@mui/system';
 import challengeApi from 'api/challengeApi';
 import solutionApi from 'api/solutionApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { Modal } from 'components/Common';
 import { selectCurrentUser } from 'features/auth/authSlice';
 import {
   fetchSolutionList,
@@ -12,8 +13,10 @@ import {
 import { Challenge as ChallengeModel } from 'models';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ChallengeError from './components/ChallengeError';
 import ChallengeIntro from './components/ChallengeIntro';
 import ChallengeStart from './components/ChallengeStart';
+import ChallengeSuccess from './components/ChallengeSuccess';
 
 const Image = styled(Paper)(({ theme }) => ({
   marginBottom: theme.spacing(4),
@@ -40,12 +43,16 @@ const Name = styled(Typography)(({ theme }) => ({
 
 function Challenge() {
   const dispatch = useAppDispatch();
+  const { challengeId } = useParams<{ challengeId: string }>();
+
   const solutionList = useAppSelector(selectSolutionList);
   const { _id: userId } = useAppSelector(selectCurrentUser);
 
-  const { challengeId } = useParams<{ challengeId: string }>();
   const [challenge, setChallenge] = useState<ChallengeModel>();
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
+
+  const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSolutionList({ userId }));
@@ -68,10 +75,22 @@ function Challenge() {
     return solutionList.find((x) => x.challengeId === challengeId);
   }, [challengeId, solutionList]);
 
+  const totalInProgressSolution = useMemo(() => {
+    return solutionList.filter((x) => !x.submitted).length;
+  }, [solutionList]);
+
   const isNew = !currentSolution;
   const isSubmitted = Boolean(currentSolution?.submitted);
 
-  const handleStartDownload = async () => {
+  const handleStartDownload = async (event: any) => {
+    if (totalInProgressSolution >= 5) {
+      event.preventDefault();
+      setShowError(true);
+      return;
+    }
+
+    setShowSuccess(true);
+
     if (userId && challengeId) {
       await solutionApi.add({
         userId,
@@ -97,6 +116,14 @@ function Challenge() {
 
   return (
     <Box>
+      <Modal open={showError} onClose={() => setShowError(false)}>
+        <ChallengeError />
+      </Modal>
+
+      <Modal open={showSuccess} onClose={() => setShowSuccess(false)}>
+        <ChallengeSuccess onClose={() => setShowSuccess(false)} />
+      </Modal>
+
       {loading && (
         <Box>
           <Skeleton width="50%" />
