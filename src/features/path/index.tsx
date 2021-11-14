@@ -31,6 +31,10 @@ import PathProgress from './components/PathProgress';
 const Wrapper = styled(Box)(({ theme }) => ({
   paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(2),
+
+  [theme.breakpoints.down('sm')]: {
+    paddingTop: 0,
+  },
 }));
 
 const Description = styled(Box)(({ theme }) => ({
@@ -107,7 +111,12 @@ function Path() {
 
   return (
     <Wrapper>
-      <Grid container spacing={4} mb={4}>
+      <Grid
+        container
+        spacing={4}
+        mb={4}
+        sx={{ display: { xs: 'none', sm: 'flex' } }}
+      >
         <Grid item xs={12} lg={8}>
           <Intro variant="outlined">
             <Typography component="h1" variant="h5" fontWeight="500">

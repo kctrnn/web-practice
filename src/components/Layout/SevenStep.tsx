@@ -1,13 +1,16 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 
-const List = styled('ul')({
+const List = styled('ul')(({ theme }) => ({
   paddingLeft: '1.5rem',
 
   li: {
     marginBottom: '1rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '.875rem',
+    },
   },
-});
+}));
 
 export function SevenStep() {
   return (
@@ -17,12 +20,12 @@ export function SevenStep() {
           sx={{ span: { color: '#f7542e' } }}
           fontSize="1.5rem"
           fontWeight={700}
-          mb={2}
+          mb={1}
         >
           Welcome to <span>Web Practice</span>
         </Typography>
 
-        <Typography mb={2}>
+        <Typography mb={4} sx={{ fontSize: { xs: '.875rem', sm: '1rem' } }}>
           Here are 7 general steps to complete the challenge
         </Typography>
       </Box>
