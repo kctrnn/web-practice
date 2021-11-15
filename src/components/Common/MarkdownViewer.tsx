@@ -10,10 +10,10 @@ const styles = {
   fontFamily: `'Lato', sans-serif`,
   fontWeight: 400,
 
-  h4: { mb: 1.5 },
   ul: { pl: 2.5 },
   li: { mb: 1 },
 
+  'h1, h2, h3, h4, h5, h6': { mb: 1.5 },
   '& > p': { mb: 1.5 },
 
   strong: { fontWeight: 700 },

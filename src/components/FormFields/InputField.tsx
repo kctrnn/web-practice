@@ -7,34 +7,43 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   control: Control<any>;
 
   label?: string;
+  variant?: 'filled' | 'standard' | 'outlined';
+  rows?: number;
 }
 
 export const InputField = ({
   name,
   control,
   label,
+  rows,
+  variant = 'filled',
   ...inputProps
 }: InputFieldProps) => {
   const {
-    field,
+    field: { ref, ...rest },
     fieldState: { invalid, error },
   } = useController({
     control,
     name,
   });
 
+  //   field: { name, value, onChange, onBlur, ref }
+
   return (
     <TextField
-      {...field}
-      variant='filled'
+      {...rest}
+      inputRef={ref}
+      variant={variant}
       fullWidth
       label={label}
-      inputProps={{ ...inputProps, style: { fontSize: 14 } }}
-      margin='normal'
-      autoComplete='off'
+      margin="normal"
+      autoComplete="off"
       error={invalid}
       helperText={error?.message}
+      inputProps={{ ...inputProps, style: { fontSize: 14 } }}
       InputLabelProps={{ style: { fontSize: 14 } }}
+      multiline={Boolean(rows)}
+      rows={rows}
     />
   );
 };

@@ -6,17 +6,17 @@ export interface SolutionFilter {
 }
 
 const solutionApi = {
-  getAll(params: SolutionFilter) {
+  getAll(params: SolutionFilter): Promise<Solution[]> {
     const url = '/solutions';
     return axiosClient.get(url, { params });
   },
 
-  get(solutionId: string) {
+  get(solutionId: string): Promise<Solution> {
     const url = `/solutions/${solutionId}`;
     return axiosClient.get(url);
   },
 
-  add(data: Solution) {
+  add(data: Solution): Promise<any> {
     const url = '/solutions';
     return axiosClient.post(url, data);
   },
