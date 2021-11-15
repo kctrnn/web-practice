@@ -3,3 +3,4 @@ export * from './NotFound';
 export * from './Sidebar';
 export * from './Carousel';
 export * from './Modal';
+export * from './MarkdownViewer';
