@@ -33,6 +33,8 @@ function Path() {
   }, [pathSlug, dispatch]);
 
   useEffect(() => {
+    if (!userId) return;
+
     dispatch(fetchSolutionList({ userId }));
   }, [dispatch, userId]);
 

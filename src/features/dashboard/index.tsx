@@ -1,32 +1,20 @@
 import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
 import DonutLargeRoundedIcon from '@mui/icons-material/DonutLargeRounded';
-import {
-  Grid,
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  Paper,
-  Skeleton,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Grid, IconButton, Paper, Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import CompletedProjectList from './components/CompletedProjectList';
 import DashboardOverview from './components/DashboardOverview';
-import ProjectItem from './components/ProjectItem';
+import DashboardSkeleton from './components/DashboardSkeleton';
+import OngoingProjectList from './components/OngoingProjectList';
 import {
   fetchDashboardData,
   selectCompletedProjectList,
   selectDashboardLoading,
   selectOngoingProjectList,
 } from './dashboardSlice';
-
-dayjs.extend(relativeTime);
 
 const Heading = styled(Typography)(({ theme }) => ({
   fontWeight: 500,
@@ -50,9 +38,14 @@ function Dashboard() {
     dispatch(fetchDashboardData());
   }, [dispatch]);
 
-  const handleItemClick = (id: string | undefined) => {
+  const handleOngoingProjectClick = (id: string | undefined) => {
     if (id === undefined) return;
     history.push(`/challenges/${id}`);
+  };
+
+  const handleCompletedProjectClick = (id: string | undefined) => {
+    if (id === undefined) return;
+    history.push(`/solutions/${id}`);
   };
 
   return (
@@ -61,42 +54,7 @@ function Dashboard() {
         Dashboard
       </Typography>
 
-      {loading && (
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6} lg={4}>
-            <Skeleton variant="text" width="50%" sx={{ mb: 1 }} />
-            <Skeleton
-              variant="rectangular"
-              width="100%"
-              height={50}
-              sx={{ mb: 1 }}
-            />
-            <Skeleton
-              variant="rectangular"
-              width="100%"
-              height={50}
-              sx={{ mb: 1 }}
-            />
-            <Skeleton variant="rectangular" width="100%" height={50} />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <Skeleton variant="text" width="50%" sx={{ mb: 1 }} />
-            <Skeleton
-              variant="rectangular"
-              width="100%"
-              height={50}
-              sx={{ mb: 1 }}
-            />
-            <Skeleton variant="rectangular" width="100%" height={50} />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <Skeleton variant="text" width="50%" sx={{ mb: 1 }} />
-            <Skeleton variant="rectangular" width="100%" height={100} />
-          </Grid>
-        </Grid>
-      )}
+      {loading && <DashboardSkeleton />}
 
       {!loading && (
         <Grid container spacing={4}>
@@ -107,28 +65,16 @@ function Dashboard() {
             >
               <StackRowDirection mb={1}>
                 <Heading>Ongoing challenges</Heading>
+
                 <IconButton color="warning">
                   <DonutLargeRoundedIcon />
                 </IconButton>
               </StackRowDirection>
 
-              <List>
-                {ongoingProjectList.map((project) => (
-                  <ListItem
-                    disableGutters
-                    key={project._id}
-                    onClick={() => handleItemClick(project._id)}
-                  >
-                    <ListItemButton sx={{ borderRadius: '.25rem' }}>
-                      <ProjectItem
-                        imgUrl={project.thumbnailImage}
-                        title={project.name}
-                        time={dayjs(project.createdAt).fromNow()}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
+              <OngoingProjectList
+                projectList={ongoingProjectList}
+                onItemClick={handleOngoingProjectClick}
+              />
             </Paper>
           </Grid>
 
@@ -139,23 +85,16 @@ function Dashboard() {
             >
               <StackRowDirection mb={1}>
                 <Heading>Completed challenges</Heading>
+
                 <IconButton color="success">
                   <DoneAllRoundedIcon />
                 </IconButton>
               </StackRowDirection>
 
-              {completedProjectList.map((project) => (
-                <ListItem disableGutters key={project._id}>
-                  <ListItemButton sx={{ borderRadius: '.25rem' }}>
-                    <ProjectItem
-                      imgUrl={project.thumbnailImage}
-                      title={project.name}
-                      votes={project.voteLength}
-                      feedbacks={project.feedbackLength}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              ))}
+              <CompletedProjectList
+                projectList={completedProjectList}
+                onItemClick={handleCompletedProjectClick}
+              />
             </Paper>
           </Grid>
 

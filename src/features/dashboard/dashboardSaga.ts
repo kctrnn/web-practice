@@ -52,6 +52,7 @@ function* fetchProjectList() {
       return {
         ...challenges[idx],
         createdAt: solution.createdAt,
+        solutionId: solution._id,
       };
     });
 
@@ -59,10 +60,12 @@ function* fetchProjectList() {
     .filter((x) => x.submitted)
     .map((solution) => {
       const idx = challenges.findIndex((x) => x._id === solution.challengeId);
+
       return {
         ...challenges[idx],
         voteLength: solution.votes.length,
         feedbackLength: solution.feedbacks.length,
+        solutionId: solution._id,
       };
     });
 
