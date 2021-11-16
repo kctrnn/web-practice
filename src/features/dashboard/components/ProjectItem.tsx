@@ -14,11 +14,11 @@ export interface ProjectItemProps {
 const Item = styled(Box)(({ theme }) => ({
   marginRight: theme.spacing(3),
   color: theme.palette.text.secondary,
-  fontSize: '.875rem',
+  fontSize: '.75rem',
 
   svg: {
     verticalAlign: 'middle',
-    fontSize: '.875rem',
+    fontSize: 'inherit',
   },
 }));
 
@@ -35,12 +35,16 @@ function ProjectItem({
         <img src={imgUrl} alt="" width={90} />
 
         <Stack justifyContent="space-between">
-          <Typography variant="body1" fontWeight={500}>
+          <Typography variant="body1" fontWeight={500} fontSize=".875rem">
             {title}
           </Typography>
 
           {time && (
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              fontSize=".75rem"
+            >
               {time}
             </Typography>
           )}

@@ -43,21 +43,33 @@ function DashboardOverview() {
       </Reputation>
 
       <StackRowDirection mb={1}>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="subtitle2"
+          color="text.secondary"
+          fontSize=".75rem"
+        >
           Votes
         </Typography>
         <Typography variant="body2">{statistics.totalVote}</Typography>
       </StackRowDirection>
 
       <StackRowDirection mb={1}>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="subtitle2"
+          color="text.secondary"
+          fontSize=".75rem"
+        >
           Solutions
         </Typography>
         <Typography variant="body2">{statistics.totalSolution}</Typography>
       </StackRowDirection>
 
       <StackRowDirection mb={1}>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="subtitle2"
+          color="text.secondary"
+          fontSize=".75rem"
+        >
           Badges
         </Typography>
         <Typography variant="body2">{statistics.totalBadge}</Typography>

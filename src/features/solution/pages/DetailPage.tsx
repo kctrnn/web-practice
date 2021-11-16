@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, Typography } from '@mui/material';
+import { CircularProgress, Grid, Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import solutionApi from 'api/solutionApi';
 import { Solution } from 'models';
@@ -6,6 +6,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SolutionHeader from '../components/SolutionHeader';
 import SolutionPreview from '../components/SolutionPreview';
+import SolutionShare from '../components/SolutionShare';
+import SolutionThumbnail from '../components/SolutionThumbnail';
+import SolutionUser from '../components/SolutionUser';
 
 const Loading = styled(Box)({
   height: '100%',
@@ -44,18 +47,24 @@ function DetailPage() {
 
   return (
     <Box pt={2}>
-      {solution && <SolutionHeader solution={solution} />}
-
       {solution && (
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={9} lg={8}>
-            <SolutionPreview solution={solution} />
-          </Grid>
+        <>
+          <SolutionHeader solution={solution} />
 
-          <Grid item xs={12} md={3} lg={4}>
-            RIGHT
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={8} lg={9}>
+              <SolutionPreview solution={solution} />
+            </Grid>
+
+            <Grid item xs={12} md={4} lg={3} sx={{ order: { xs: -1, md: 0 } }}>
+              <Stack spacing={2}>
+                <SolutionUser solution={solution} />
+                <SolutionThumbnail solution={solution} />
+                <SolutionShare />
+              </Stack>
+            </Grid>
           </Grid>
-        </Grid>
+        </>
       )}
     </Box>
   );

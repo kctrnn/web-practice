@@ -41,6 +41,7 @@ function SolutionPreview({ solution }: SolutionPreviewProps) {
               variant="contained"
               disableElevation
               color="warning"
+              sx={{ textTransform: 'capitalize' }}
             >
               Demo
             </Button>
@@ -57,6 +58,7 @@ function SolutionPreview({ solution }: SolutionPreviewProps) {
               variant="contained"
               disableElevation
               color="inherit"
+              sx={{ textTransform: 'capitalize' }}
             >
               Code
             </Button>
