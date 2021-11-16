@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, Stack, Typography } from '@mui/material';
+import { CircularProgress, Grid, Stack } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import solutionApi from 'api/solutionApi';
 import { Solution } from 'models';

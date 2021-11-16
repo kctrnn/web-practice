@@ -20,6 +20,11 @@ const userApi = {
     const url = '/profile';
     return axiosClient.get(url);
   },
+
+  get(id: string): Promise<User> {
+    const url = `/users/${id}`;
+    return axiosClient.get(url);
+  },
 };
 
 export default userApi;

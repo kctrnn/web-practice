@@ -1,8 +1,8 @@
-import { Button, Chip, Stack, Typography } from '@mui/material';
+import { Chip, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { Solution } from 'models';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { Solution } from 'models';
 dayjs.extend(relativeTime);
 
 export interface SolutionHeaderProps {

@@ -1,5 +1,4 @@
 import { Avatar, Paper, Stack, Typography } from '@mui/material';
-import { Box } from '@mui/system';
 import userApi from 'api/userApi';
 import { Solution, User } from 'models';
 import { useEffect, useState } from 'react';
@@ -12,14 +11,12 @@ function SolutionUser({ solution }: SolutionUserProps) {
   const [user, setUser] = useState<User>();
 
   useEffect(() => {
-    const userId = solution.userId;
-
-    const fetchUserById = async () => {
-      // const response = await userApi.get(userId)
-      // setUser(response)
+    const fetchUser = async () => {
+      const response = await userApi.get(solution.userId);
+      setUser(response);
     };
 
-    fetchUserById();
+    fetchUser();
   }, [solution.userId]);
 
   return (

@@ -1,12 +1,13 @@
 import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 import { Button, Paper, Stack } from '@mui/material';
-import { styled } from '@mui/system';
+import { Box, styled } from '@mui/system';
 import challengeApi from 'api/challengeApi';
+import { useAppSelector } from 'app/hooks';
+import { ImageResponsive } from 'components/Common';
+import { selectCurrentUser } from 'features/auth/authSlice';
 import { Challenge, Solution } from 'models';
 import { useEffect, useState } from 'react';
-import { useAppSelector } from 'app/hooks';
-import { selectCurrentUser } from 'features/auth/authSlice';
 
 const ButtonStyled = styled(Button)(() => ({
   textTransform: 'capitalize',
@@ -15,13 +16,6 @@ const ButtonStyled = styled(Button)(() => ({
     verticalAlign: 'middle',
     fontSize: '.75rem',
   },
-}));
-
-const Image = styled('img')(() => ({
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  borderRadius: '.25rem',
 }));
 
 export interface SolutionThumbnailProps {
@@ -45,7 +39,9 @@ function SolutionThumbnail({ solution }: SolutionThumbnailProps) {
   return (
     <Paper variant="outlined" sx={{ p: 2 }}>
       <Stack spacing={2}>
-        <Image src={challenge?.thumbnailImage} alt="" />
+        <Box>
+          <ImageResponsive src={challenge?.thumbnailImage} alt="" />
+        </Box>
 
         {!isMine && (
           <ButtonStyled

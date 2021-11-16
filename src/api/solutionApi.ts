@@ -1,8 +1,9 @@
-import { Solution } from 'models';
+import { PathSlug, Solution } from 'models';
 import axiosClient from './axiosClient';
 
 export interface SolutionFilter {
   userId?: string;
+  pathSlug?: PathSlug;
 }
 
 const solutionApi = {
