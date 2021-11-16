@@ -39,15 +39,20 @@ function LoginForm({ onSubmit }: LoginFormProps) {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)}>
-      <InputField name='email' control={control} label='Email Address' />
+      <InputField
+        name="email"
+        control={control}
+        label="Email Address"
+        placeholder="kctrnn@gmail.com"
+      />
 
-      <PasswordField name='password' control={control} label='Password' />
+      <PasswordField name="password" control={control} label="Password" />
 
       <LoadingButton
-        type='submit'
-        variant='contained'
+        type="submit"
+        variant="contained"
         loading={isLogging}
-        size='large'
+        size="large"
         disableElevation
         sx={{ width: '40%', mt: 2, fontSize: '.75rem' }}
       >

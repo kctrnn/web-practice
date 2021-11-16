@@ -47,28 +47,43 @@ function RegisterForm({ onSubmit }: RegisterFormProps) {
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)}>
       <Stack
-        direction='row'
-        alignItems='center'
+        direction="row"
+        alignItems="center"
         sx={{ '> *:last-child': { ml: 4 } }}
       >
-        <InputField name='name' control={control} label='Name' />
-        <InputField name='username' control={control} label='Username' />
+        <InputField
+          name="name"
+          control={control}
+          label="Name"
+          placeholder="Kim Chan"
+        />
+        <InputField
+          name="username"
+          control={control}
+          label="Username"
+          placeholder="kctrnn"
+        />
       </Stack>
 
-      <InputField name='email' control={control} label='Email Address' />
+      <InputField
+        name="email"
+        control={control}
+        label="Email Address"
+        placeholder="kctrnn@gmail.com"
+      />
 
       <PasswordField
-        name='password'
+        name="password"
         control={control}
-        label='Password'
-        placeholder='6+ characters'
+        label="Password"
+        placeholder="6+ characters"
       />
 
       <LoadingButton
-        type='submit'
-        variant='contained'
+        type="submit"
+        variant="contained"
         loading={isLogging}
-        size='large'
+        size="large"
         disableElevation
         sx={{ width: '40%', mt: 2, fontSize: '.75rem' }}
       >
