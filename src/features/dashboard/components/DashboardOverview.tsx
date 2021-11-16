@@ -1,8 +1,9 @@
+import ShowChartRoundedIcon from '@mui/icons-material/ShowChartRounded';
 import { IconButton, Paper, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { useAppSelector } from 'app/hooks';
+import { totalReputation } from '../dashboardSelector';
 import { selectDashboardStatistics } from '../dashboardSlice';
-import ShowChartRoundedIcon from '@mui/icons-material/ShowChartRounded';
 
 const StackRowDirection = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
@@ -23,6 +24,7 @@ const Reputation = styled(Typography)(({ theme }) => ({
 
 function DashboardOverview() {
   const statistics = useAppSelector(selectDashboardStatistics);
+  const totalRepu = useAppSelector(totalReputation);
 
   return (
     <Paper
@@ -37,7 +39,7 @@ function DashboardOverview() {
       </StackRowDirection>
 
       <Reputation color="text.secondary" variant="body1" mb={2}>
-        <span>213</span> reputations
+        <span>{totalRepu}</span> reputations
       </Reputation>
 
       <StackRowDirection mb={1}>
