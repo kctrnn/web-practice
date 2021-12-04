@@ -185,7 +185,7 @@ export const Sidebar = () => {
           </ListItem>
         </LinkStyled>
 
-        <LinkStyled to="/forum">
+        {/* <LinkStyled to="/forum">
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
               <ListItemIconStyled>
@@ -195,7 +195,7 @@ export const Sidebar = () => {
               <ListItemTextStyled primary="Forum" disableTypography />
             </ListItemButton>
           </ListItem>
-        </LinkStyled>
+        </LinkStyled> */}
 
         <LinkStyled to="/seven-step">
           <ListItem disableGutters>
