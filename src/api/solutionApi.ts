@@ -21,6 +21,11 @@ const solutionApi = {
     const url = '/solutions';
     return axiosClient.post(url, data);
   },
+
+  update(solutionId: string, data: Solution): Promise<any> {
+    const url = `/solutions/${solutionId}`;
+    return axiosClient.put(url, data);
+  },
 };
 
 export default solutionApi;

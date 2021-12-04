@@ -8,7 +8,7 @@ export interface Solution {
   repoUrl: string;
   feedbackRequest: string;
 
-  feedbacks: string[];
+  feedbacks: Feedback[];
   votes: string[];
 
   challengeId: string;
@@ -19,4 +19,9 @@ export interface Solution {
 
   submitted: boolean;
   submittedAt: number;
+}
+
+interface Feedback {
+  userId: string;
+  message: string;
 }

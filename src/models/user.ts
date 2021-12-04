@@ -6,5 +6,5 @@ export interface User {
   username: string;
 
   avatarUrl: string;
-  githubUrl: string;
+  bio: string;
 }

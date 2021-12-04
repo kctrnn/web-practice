@@ -4,9 +4,11 @@ import { Avatar, Button, Paper, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import challengeApi from 'api/challengeApi';
 import userApi from 'api/userApi';
+import { useAppSelector } from 'app/hooks';
 import { ImageResponsive } from 'components/Common';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { selectCurrentUser } from 'features/auth/authSlice';
 import { Challenge, Solution, User } from 'models';
 import { ReactNode, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -50,6 +52,8 @@ function SolutionItem({ solution }: SolutionItemProps) {
 
   const [challenge, setChallenge] = useState<Challenge>();
   const [user, setUser] = useState<User>();
+
+  const currentUser = useAppSelector(selectCurrentUser);
 
   useEffect(() => {
     const fetchChallenge = async () => {
@@ -117,17 +121,25 @@ function SolutionItem({ solution }: SolutionItemProps) {
 
       <Stack direction="row" spacing={2}>
         <ButtonStyled
-          startIcon={<ThumbUpAltRoundedIcon />}
+          startIcon={
+            <ThumbUpAltRoundedIcon
+              sx={{
+                color: solution.votes.includes(currentUser?._id || '213')
+                  ? 'primary.main'
+                  : 'inherit',
+              }}
+            />
+          }
           onClick={handleVoteClick}
         >
-          Vote
+          {solution.votes.length}
         </ButtonStyled>
 
         <ButtonStyled
           startIcon={<ChatBubbleRoundedIcon />}
           onClick={handleFeedbackClick}
         >
-          Feedback
+          {solution.feedbacks.length}
         </ButtonStyled>
       </Stack>
     </Paper>
