@@ -1,5 +1,5 @@
 import { NotFound, PrivateRoute } from 'components/Common';
-import { GeneralLayout, Home, SevenStep } from 'components/Layout';
+import { GeneralLayout, Home, MyTeam, SevenStep } from 'components/Layout';
 import LoginPage from 'features/auth/pages/LoginPage';
 import RegisterPage from 'features/auth/pages/RegisterPage';
 import Challenge from 'features/challenge';
@@ -60,6 +60,12 @@ function App() {
         <Route path="/seven-step">
           <GeneralLayout>
             <SevenStep />
+          </GeneralLayout>
+        </Route>
+
+        <Route path="/about-us">
+          <GeneralLayout>
+            <MyTeam />
           </GeneralLayout>
         </Route>
 
