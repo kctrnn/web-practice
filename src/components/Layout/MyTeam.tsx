@@ -40,7 +40,7 @@ export function MyTeam() {
 
         <div className={styles.team_inner}>
           {PERSON_LIST.map((person) => (
-            <div className={styles.person}>
+            <div key={person.name} className={styles.person}>
               <img src={person.ava} className={styles.person_avatar} alt="" />
               <div className={styles.person_name}>{person.name}</div>
               <div className={styles.person_job}>{person.job}</div>

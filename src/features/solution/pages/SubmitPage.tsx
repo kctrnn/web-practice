@@ -4,13 +4,15 @@ import challengeApi from 'api/challengeApi';
 import solutionApi from 'api/solutionApi';
 import { Challenge, Solution } from 'models';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { getSubmitInfo } from 'utils';
 import SolutionInfo from '../components/SolutionInfo';
 import SubmitForm from '../components/SubmitForm';
 import SubmitInfo from '../components/SubmitInfo';
 
 function SubmitPage() {
+  const history = useHistory();
   const { solutionId } = useParams<{ solutionId: string }>();
   const [currentInput, setCurrentInput] = useState<string>('title');
 
@@ -41,8 +43,24 @@ function SubmitPage() {
     setCurrentInput(inputName);
   };
 
-  const handleSubmitFormSubmit = (data: Partial<Solution>) => {
-    console.log(data);
+  const handleSubmitFormSubmit = async (data: Partial<Solution>) => {
+    const solutionValues: Solution = {
+      ...solution,
+      ...(data as Solution),
+      submitted: true,
+      submittedAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+
+    try {
+      solution?._id &&
+        (await solutionApi.update(solution?._id, solutionValues));
+
+      history.push(`/solutions/${solutionValues._id}`);
+      toast.success('Yup', { icon: '🚀' });
+    } catch (error) {
+      console.log('Failed to submit solution: ', error);
+    }
   };
 
   return (

@@ -27,7 +27,7 @@ function* fetchStatistics() {
   );
 
   const statistics: DashboardStatistics = {
-    totalBadge: 3,
+    totalBadge: 0,
     totalSolution,
     totalVote,
   };

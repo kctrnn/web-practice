@@ -35,6 +35,7 @@ const ButtonStyled = ({ children, startIcon, onClick }: ButtonStyledProps) => {
       disableElevation
       startIcon={startIcon}
       sx={{
+        pointerEvents: 'none',
         textTransform: 'capitalize',
         '.MuiButton-startIcon > svg': {
           verticalAlign: 'middle',
@@ -97,14 +98,12 @@ function SolutionItem({ solution }: SolutionItemProps) {
       </Typography>
 
       <Stack direction="row" spacing={2}>
-        <Avatar
-          variant="rounded"
-          alt={user?.name}
-          src={`https://avatars.githubusercontent.com/u/90959206?v=4`}
-        />
+        <Avatar variant="rounded" alt={user?.name} src={``} />
 
         <Stack justifyContent="space-between">
-          <Typography variant="subtitle2">Kim Chan</Typography>
+          <Typography variant="subtitle2">
+            {user?.name || 'Kim Chan'}
+          </Typography>
 
           <Typography color="text.secondary" fontSize=".75rem">
             {dayjs(solution.submittedAt).fromNow()}

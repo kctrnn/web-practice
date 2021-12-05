@@ -69,16 +69,18 @@ function SolutionThumbnail({ solution }: SolutionThumbnailProps) {
           </Button>
         )}
 
-        <ButtonStyled
-          variant="contained"
-          size="small"
-          color="inherit"
-          disableElevation
-          fullWidth
-          startIcon={<ChatBubbleRoundedIcon />}
-        >
-          Feedback
-        </ButtonStyled>
+        {!isMine && (
+          <ButtonStyled
+            variant="contained"
+            size="small"
+            color="inherit"
+            disableElevation
+            fullWidth
+            startIcon={<ChatBubbleRoundedIcon />}
+          >
+            Feedback
+          </ButtonStyled>
+        )}
       </Stack>
     </Paper>
   );
