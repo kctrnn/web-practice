@@ -5,6 +5,7 @@ import { Box, styled } from '@mui/system';
 import challengeApi from 'api/challengeApi';
 import { useAppSelector } from 'app/hooks';
 import { ImageResponsive } from 'components/Common';
+import { TOKEN } from 'constants/index';
 import { selectCurrentUser } from 'features/auth/authSlice';
 import { Challenge, Solution } from 'models';
 import { useEffect, useState } from 'react';
@@ -20,12 +21,21 @@ const ButtonStyled = styled(Button)(() => ({
 
 export interface SolutionThumbnailProps {
   solution: Solution;
+  onVoteClick: (userId: string) => void;
+  onFeedbackSubmit: (userId: string, message: string) => void;
 }
 
-function SolutionThumbnail({ solution }: SolutionThumbnailProps) {
+function SolutionThumbnail({
+  solution,
+  onFeedbackSubmit,
+  onVoteClick,
+}: SolutionThumbnailProps) {
   const [challenge, setChallenge] = useState<Challenge>();
   const user = useAppSelector(selectCurrentUser);
+
+  const isLoggedIn = Boolean(localStorage.getItem(TOKEN));
   const isMine = user._id === solution.userId;
+  const isLiked = solution.votes.includes(user?._id || '');
 
   useEffect(() => {
     const fetchChallengeById = async () => {
@@ -47,10 +57,12 @@ function SolutionThumbnail({ solution }: SolutionThumbnailProps) {
           <ButtonStyled
             variant="contained"
             size="small"
-            color="inherit"
+            color={isLiked ? 'primary' : 'inherit'}
             disableElevation
+            disabled={!isLoggedIn}
             fullWidth
             startIcon={<ThumbUpAltRoundedIcon />}
+            onClick={() => onVoteClick(user._id || '')}
           >
             Vote
           </ButtonStyled>
@@ -75,6 +87,7 @@ function SolutionThumbnail({ solution }: SolutionThumbnailProps) {
             size="small"
             color="inherit"
             disableElevation
+            disabled={!isLoggedIn}
             fullWidth
             startIcon={<ChatBubbleRoundedIcon />}
           >

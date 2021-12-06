@@ -3,10 +3,10 @@ import { IconButton, Paper, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useLocation } from 'react-router';
-
-const HOST = 'https://webpractice-c1se21.vercel.app';
+import { toast } from 'react-toastify';
 
 function SolutionShare() {
+  const HOST = 'https://webpractice-c1se21.vercel.app';
   const location = useLocation();
 
   return (
@@ -23,7 +23,10 @@ function SolutionShare() {
             <LinkedInIcon />
           </IconButton> */}
 
-          <CopyToClipboard text={HOST.concat(location.pathname)}>
+          <CopyToClipboard
+            text={HOST.concat(location.pathname)}
+            onCopy={() => toast.info('Copy the solution path successfully')}
+          >
             <IconButton>
               <ContentCopyRoundedIcon />
             </IconButton>

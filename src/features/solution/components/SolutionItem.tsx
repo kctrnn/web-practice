@@ -21,17 +21,17 @@ export interface SolutionItemProps {
 
 export interface ButtonStyledProps {
   children: ReactNode;
-  onClick?: () => void;
+  isLiked: boolean;
   startIcon?: ReactNode;
 }
 
-const ButtonStyled = ({ children, startIcon, onClick }: ButtonStyledProps) => {
+const ButtonStyled = ({ children, startIcon, isLiked }: ButtonStyledProps) => {
   return (
     <Button
       fullWidth
       variant="contained"
       size="small"
-      color="inherit"
+      color={isLiked ? 'primary' : 'inherit'}
       disableElevation
       startIcon={startIcon}
       sx={{
@@ -78,14 +78,6 @@ function SolutionItem({ solution }: SolutionItemProps) {
     history.push(`/solutions/${solution._id}`);
   };
 
-  const handleVoteClick = () => {
-    console.log('clicked');
-  };
-
-  const handleFeedbackClick = () => {
-    console.log('clicked');
-  };
-
   return (
     <Paper variant="outlined" sx={{ p: 2 }}>
       <Typography
@@ -101,9 +93,7 @@ function SolutionItem({ solution }: SolutionItemProps) {
         <Avatar variant="rounded" alt={user?.name} src={``} />
 
         <Stack justifyContent="space-between">
-          <Typography variant="subtitle2">
-            {user?.name || 'Kim Chan'}
-          </Typography>
+          <Typography variant="subtitle2">{user?.name}</Typography>
 
           <Typography color="text.secondary" fontSize=".75rem">
             {dayjs(solution.submittedAt).fromNow()}
@@ -120,24 +110,13 @@ function SolutionItem({ solution }: SolutionItemProps) {
 
       <Stack direction="row" spacing={2}>
         <ButtonStyled
-          startIcon={
-            <ThumbUpAltRoundedIcon
-              sx={{
-                color: solution.votes.includes(currentUser?._id || '213')
-                  ? 'primary.main'
-                  : 'inherit',
-              }}
-            />
-          }
-          onClick={handleVoteClick}
+          isLiked={solution.votes.includes(currentUser?._id || '')}
+          startIcon={<ThumbUpAltRoundedIcon />}
         >
           {solution.votes.length}
         </ButtonStyled>
 
-        <ButtonStyled
-          startIcon={<ChatBubbleRoundedIcon />}
-          onClick={handleFeedbackClick}
-        >
+        <ButtonStyled isLiked={false} startIcon={<ChatBubbleRoundedIcon />}>
           {solution.feedbacks.length}
         </ButtonStyled>
       </Stack>

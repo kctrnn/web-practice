@@ -36,7 +36,37 @@ function DetailPage() {
     };
 
     fetchSolution();
-  }, [solutionId]);
+  }, [solutionId, loading]);
+
+  const handleVoteClick = async (userId: string) => {
+    if (!solution?._id) return;
+
+    const isRemoveVote = solution.votes.includes(userId);
+    const newSolution = { ...solution };
+
+    if (isRemoveVote) {
+      const newVotes = newSolution.votes.filter((id) => id !== userId);
+      newSolution.votes = [...newVotes];
+    } else {
+      newSolution.votes = [...newSolution.votes, userId];
+    }
+
+    try {
+      setLoading(true);
+      await solutionApi.update(solution?._id, newSolution);
+      setLoading(false);
+    } catch (error) {
+      console.log('Failed to vote: ', error);
+    }
+  };
+
+  const handleFeedbackSubmit = async (userId: string, message: string) => {
+    try {
+      console.log(userId, message);
+    } catch (error) {
+      console.log('Failed to feedback: ', error);
+    }
+  };
 
   if (loading)
     return (
@@ -59,7 +89,11 @@ function DetailPage() {
             <Grid item xs={12} md={4} lg={3} sx={{ order: { xs: -1, md: 0 } }}>
               <Stack spacing={2}>
                 <SolutionUser solution={solution} />
-                <SolutionThumbnail solution={solution} />
+                <SolutionThumbnail
+                  solution={solution}
+                  onVoteClick={handleVoteClick}
+                  onFeedbackSubmit={handleFeedbackSubmit}
+                />
                 <SolutionShare />
               </Stack>
             </Grid>
