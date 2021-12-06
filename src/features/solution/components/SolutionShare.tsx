@@ -1,4 +1,6 @@
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import { IconButton, Paper, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -15,17 +17,17 @@ function SolutionShare() {
         <Typography variant="subtitle2">Share</Typography>
 
         <Box>
-          {/* <IconButton>
+          <IconButton onClick={() => toast.info('This feature is coming soon')}>
             <TwitterIcon />
-          </IconButton> */}
+          </IconButton>
 
-          {/* <IconButton>
+          <IconButton onClick={() => toast.info('This feature is coming soon')}>
             <LinkedInIcon />
-          </IconButton> */}
+          </IconButton>
 
           <CopyToClipboard
             text={HOST.concat(location.pathname)}
-            onCopy={() => toast.info('Copy the solution path successfully')}
+            onCopy={() => toast.success('Copy the solution URL successfully')}
           >
             <IconButton>
               <ContentCopyRoundedIcon />

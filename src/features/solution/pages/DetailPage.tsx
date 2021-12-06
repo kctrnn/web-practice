@@ -1,9 +1,12 @@
 import { CircularProgress, Grid, Stack } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import solutionApi from 'api/solutionApi';
+import { selectCurrentUser } from 'features/auth/authSlice';
 import { Solution } from 'models';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import SolutionFeedbackForm from '../components/SolutionFeedbackForm';
 import SolutionHeader from '../components/SolutionHeader';
 import SolutionPreview from '../components/SolutionPreview';
 import SolutionShare from '../components/SolutionShare';
@@ -19,9 +22,11 @@ const Loading = styled(Box)({
 
 function DetailPage() {
   const { solutionId } = useParams<{ solutionId: string }>();
+  const { _id: userId } = useSelector(selectCurrentUser);
 
   const [solution, setSolution] = useState<Solution>();
   const [loading, setLoading] = useState(true);
+  const [feedbackMode, setFeedbackMode] = useState(false);
 
   useEffect(() => {
     const fetchSolution = async () => {
@@ -60,9 +65,20 @@ function DetailPage() {
     }
   };
 
-  const handleFeedbackSubmit = async (userId: string, message: string) => {
+  const handleFeedbackSubmit = async ({ message }: { message: string }) => {
+    if (!solution?._id || !userId) return;
+
+    const newSolution: Solution = {
+      ...solution,
+      feedbacks: [...solution?.feedbacks, { userId, message }],
+    };
+
     try {
-      console.log(userId, message);
+      setLoading(true);
+      await solutionApi.update(solution?._id, newSolution);
+
+      setFeedbackMode(false);
+      setLoading(false);
     } catch (error) {
       console.log('Failed to feedback: ', error);
     }
@@ -91,10 +107,15 @@ function DetailPage() {
                 <SolutionUser solution={solution} />
                 <SolutionThumbnail
                   solution={solution}
+                  feedbackMode={feedbackMode}
                   onVoteClick={handleVoteClick}
-                  onFeedbackSubmit={handleFeedbackSubmit}
+                  onFeedbackClick={() => setFeedbackMode((x) => !x)}
                 />
                 <SolutionShare />
+
+                {feedbackMode && (
+                  <SolutionFeedbackForm onSubmit={handleFeedbackSubmit} />
+                )}
               </Stack>
             </Grid>
           </Grid>

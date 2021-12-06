@@ -9,6 +9,7 @@ import { TOKEN } from 'constants/index';
 import { selectCurrentUser } from 'features/auth/authSlice';
 import { Challenge, Solution } from 'models';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const ButtonStyled = styled(Button)(() => ({
   textTransform: 'capitalize',
@@ -21,15 +22,18 @@ const ButtonStyled = styled(Button)(() => ({
 
 export interface SolutionThumbnailProps {
   solution: Solution;
+  feedbackMode: boolean;
   onVoteClick: (userId: string) => void;
-  onFeedbackSubmit: (userId: string, message: string) => void;
+  onFeedbackClick: () => void;
 }
 
 function SolutionThumbnail({
   solution,
-  onFeedbackSubmit,
+  feedbackMode,
   onVoteClick,
+  onFeedbackClick,
 }: SolutionThumbnailProps) {
+  const history = useHistory();
   const [challenge, setChallenge] = useState<Challenge>();
   const user = useAppSelector(selectCurrentUser);
 
@@ -76,6 +80,7 @@ function SolutionThumbnail({
             disableElevation
             color="primary"
             sx={{ textTransform: 'capitalize' }}
+            onClick={() => history.push(`/solutions/${solution?._id}/submit`)}
           >
             Edit
           </Button>
@@ -85,11 +90,12 @@ function SolutionThumbnail({
           <ButtonStyled
             variant="contained"
             size="small"
-            color="inherit"
+            color={feedbackMode ? 'warning' : 'inherit'}
             disableElevation
             disabled={!isLoggedIn}
             fullWidth
             startIcon={<ChatBubbleRoundedIcon />}
+            onClick={onFeedbackClick}
           >
             Feedback
           </ButtonStyled>

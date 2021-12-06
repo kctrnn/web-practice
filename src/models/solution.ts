@@ -21,7 +21,7 @@ export interface Solution {
   submittedAt: number;
 }
 
-interface Feedback {
+export interface Feedback {
   userId: string;
   message: string;
 }
