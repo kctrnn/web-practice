@@ -26,7 +26,7 @@ export function MyTeam() {
         <h1 className={styles.header_title}>About us</h1>
         <p className={styles.header_description}>
           We are a team gathered to do a fun project in the CAPSTONE 1 SE <br />
-          Our team is lead by Dr. Dang Viet Hung
+          Our team is guided by <strong>Dr. Dang Viet Hung</strong>
         </p>
         <p className={styles.header_latestProject}>
           Our project is <LinkStyled to="/">Web Practice</LinkStyled>
