@@ -69,7 +69,7 @@ function Path() {
 
       <Box mb={3}>
         <Divider>
-          <Chip label="Projects" variant="outlined" color="primary" />
+          <Chip label="Challenges" variant="outlined" color="primary" />
         </Divider>
       </Box>
 

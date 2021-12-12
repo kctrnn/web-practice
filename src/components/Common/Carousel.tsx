@@ -111,7 +111,7 @@ export const Carousel = () => {
     dots: true,
     speed: 1000,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 8000,
 
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,

@@ -90,7 +90,7 @@ function SolutionItem({ solution }: SolutionItemProps) {
       </Typography>
 
       <Stack direction="row" spacing={2}>
-        <Avatar variant="rounded" alt={user?.name} src={``} />
+        <Avatar variant="rounded" alt={user?.name} src={user?.avatarUrl} />
 
         <Stack justifyContent="space-between">
           <Typography variant="subtitle2">{user?.name}</Typography>

@@ -148,27 +148,17 @@ export const Sidebar = () => {
           </LinkStyled>
         )}
 
-        {/* {!isPathMode && (
-          <LinkStyled to="/dashboard">
-            <ListItem disableGutters>
-              <ListItemButton sx={{ borderRadius: '.5rem' }}>
-                <ListItemIconStyled>
-                  <DashboardIcon />
-                </ListItemIconStyled>
-
-                <ListItemTextStyled primary="Dashboard" disableTypography />
-              </ListItemButton>
-            </ListItem>
-          </LinkStyled>
-        )} */}
-        <LinkStyled to="/dashboard">
+        <LinkStyled to="/seven-step">
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
               <ListItemIconStyled>
-                <DashboardIcon />
+                <StarsRoundedIcon />
               </ListItemIconStyled>
 
-              <ListItemTextStyled primary="Dashboard" disableTypography />
+              <ListItemTextStyled
+                primary="7 steps to start"
+                disableTypography
+              />
             </ListItemButton>
           </ListItem>
         </LinkStyled>
@@ -185,29 +175,14 @@ export const Sidebar = () => {
           </ListItem>
         </LinkStyled>
 
-        {/* <LinkStyled to="/forum">
+        <LinkStyled to="/dashboard">
           <ListItem disableGutters>
             <ListItemButton sx={{ borderRadius: '.5rem' }}>
               <ListItemIconStyled>
-                <ForumRoundedIcon />
+                <DashboardIcon />
               </ListItemIconStyled>
 
-              <ListItemTextStyled primary="Forum" disableTypography />
-            </ListItemButton>
-          </ListItem>
-        </LinkStyled> */}
-
-        <LinkStyled to="/seven-step">
-          <ListItem disableGutters>
-            <ListItemButton sx={{ borderRadius: '.5rem' }}>
-              <ListItemIconStyled>
-                <StarsRoundedIcon />
-              </ListItemIconStyled>
-
-              <ListItemTextStyled
-                primary="7 steps to start"
-                disableTypography
-              />
+              <ListItemTextStyled primary="Dashboard" disableTypography />
             </ListItemButton>
           </ListItem>
         </LinkStyled>

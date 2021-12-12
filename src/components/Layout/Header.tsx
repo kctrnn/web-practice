@@ -1,4 +1,3 @@
-import { AccountCircle } from '@mui/icons-material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
@@ -53,6 +52,13 @@ export const Header = () => {
     // backgroundColor: theme.palette.primary.main,
   }));
 
+  const SubTitle = styled(Typography)(({ theme }) => ({
+    fontSize: '.75rem',
+    fontWeight: 500,
+    fontFamily: `'Raleway', sans-serif`,
+    color: theme.palette.text.secondary,
+  }));
+
   const ButtonText = styled(Typography)(() => ({
     fontSize: '0.875rem',
   }));
@@ -99,7 +105,10 @@ export const Header = () => {
     <>
       <AppBar position="static" color="transparent" sx={{ boxShadow: 'none' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Logo to="/">Web Practice</Logo>
+          <Stack>
+            <Logo to="/">Web Practice</Logo>
+            <SubTitle>Learning by doing</SubTitle>
+          </Stack>
 
           {!isLoggedIn && (
             <Stack
@@ -185,7 +194,7 @@ export const Header = () => {
             <SettingsRoundedIcon fontSize="small" />
           </ListItemIcon>
 
-          <StyledListItemText primary="Profile" />
+          <StyledListItemText primary="Setting" />
         </StyledMenuItem>
 
         <Divider />
