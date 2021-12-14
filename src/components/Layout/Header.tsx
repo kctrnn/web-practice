@@ -181,21 +181,15 @@ export const Header = () => {
           </StyledMenuItem>
         </Link>
 
-        {/* <StyledMenuItem>
-          <ListItemIcon>
-            <AccountCircle fontSize="small" />
-          </ListItemIcon>
+        <Link to="/profile">
+          <StyledMenuItem>
+            <ListItemIcon>
+              <SettingsRoundedIcon fontSize="small" />
+            </ListItemIcon>
 
-          <StyledListItemText primary="My Portfolio" />
-        </StyledMenuItem> */}
-
-        <StyledMenuItem>
-          <ListItemIcon>
-            <SettingsRoundedIcon fontSize="small" />
-          </ListItemIcon>
-
-          <StyledListItemText primary="Setting" />
-        </StyledMenuItem>
+            <StyledListItemText primary="Setting" />
+          </StyledMenuItem>
+        </Link>
 
         <Divider />
 

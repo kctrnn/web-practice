@@ -89,10 +89,10 @@ function* watchAuthFlow() {
       } else {
         yield fork(handleRegister, signupAction.payload);
       }
+    } else {
+      yield take(logout.type);
+      yield call(handleLogout);
     }
-
-    yield take(logout.type);
-    yield call(handleLogout);
   }
 }
 

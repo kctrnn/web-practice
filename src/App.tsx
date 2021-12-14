@@ -6,6 +6,7 @@ import Challenge from 'features/challenge';
 import Dashboard from 'features/dashboard';
 import Forum from 'features/forum';
 import Path from 'features/path';
+import Profile from 'features/profile';
 import Solution from 'features/solution';
 import { Route, Switch } from 'react-router-dom';
 
@@ -68,6 +69,12 @@ function App() {
             <MyTeam />
           </GeneralLayout>
         </Route>
+
+        <PrivateRoute path="/profile">
+          <GeneralLayout>
+            <Profile />
+          </GeneralLayout>
+        </PrivateRoute>
 
         <Route>
           <NotFound />
