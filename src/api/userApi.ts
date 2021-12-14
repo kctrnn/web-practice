@@ -25,6 +25,11 @@ const userApi = {
     const url = `/users/${id}`;
     return axiosClient.get(url);
   },
+
+  update(id: string, data: User): Promise<any> {
+    const url = `/users/${id}`;
+    return axiosClient.put(url, data);
+  },
 };
 
 export default userApi;

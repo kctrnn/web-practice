@@ -91,10 +91,10 @@ function ProfileInfo({ profile }: ProfileInfoProps) {
         <Content variant="body1">{profile.email}</Content>
       </Item>
 
-      <Item>
+      {/* <Item>
         <Name variant="body1">Password</Name>
         <Content variant="body1">**********</Content>
-      </Item>
+      </Item> */}
     </Wrapper>
   );
 }

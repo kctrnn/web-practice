@@ -1,6 +1,5 @@
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import EmojiObjectsRoundedIcon from '@mui/icons-material/EmojiObjectsRounded';
-import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import HomeMaxIcon from '@mui/icons-material/HomeMax';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import StarsRoundedIcon from '@mui/icons-material/StarsRounded';

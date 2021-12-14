@@ -136,7 +136,11 @@ export const Header = () => {
               color="inherit"
               size="small"
               disableElevation
-              sx={{ borderColor: '#EAEEF3', mr: { sm: 1, md: 3, lg: 5 } }}
+              sx={{
+                borderColor: '#EAEEF3',
+                mr: { sm: 1, md: 3, lg: 5 },
+                py: 1,
+              }}
               onClick={handleOpenMenu}
             >
               <StyledAvatar
