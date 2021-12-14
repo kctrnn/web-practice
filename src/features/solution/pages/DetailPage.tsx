@@ -1,12 +1,19 @@
-import { CircularProgress, Grid, Stack } from '@mui/material';
+import {
+  CircularProgress,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+} from '@mui/material';
 import { Box, styled } from '@mui/system';
 import solutionApi from 'api/solutionApi';
 import { selectCurrentUser } from 'features/auth/authSlice';
 import { Solution } from 'models';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import SolutionFeedbackForm from '../components/SolutionFeedbackForm';
+import SolutionFeedbackItem from '../components/SolutionFeedbackItem';
 import SolutionHeader from '../components/SolutionHeader';
 import SolutionPreview from '../components/SolutionPreview';
 import SolutionShare from '../components/SolutionShare';
@@ -118,6 +125,30 @@ function DetailPage() {
                 )}
               </Stack>
             </Grid>
+          </Grid>
+
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={8} lg={9}>
+              <Paper variant="outlined" sx={{ p: 2, mt: 4 }}>
+                <Typography variant="h6" mb={2}>
+                  Feedbacks
+                </Typography>
+
+                <Stack spacing={4}>
+                  {solution.feedbacks.map((feedback, idx) => (
+                    <SolutionFeedbackItem key={idx} feedback={feedback} />
+                  ))}
+                </Stack>
+
+                {solution.feedbacks.length === 0 && (
+                  <Typography color="text.secondary" variant="body1">
+                    No feedback found yet
+                  </Typography>
+                )}
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12} md={4} lg={3} />
           </Grid>
         </>
       )}
