@@ -1,11 +1,24 @@
-import { Typography } from '@mui/material';
+import { LinearProgress, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import userApi from 'api/userApi';
 import { useAppSelector } from 'app/hooks';
 import { selectCurrentUser } from 'features/auth/authSlice';
+import { User } from 'models';
+import { useEffect, useState } from 'react';
 import ProfileInfo from '../components/ProfileInfo';
 
 function MainPage() {
-  const profile = useAppSelector(selectCurrentUser);
+  const { _id: userId } = useAppSelector(selectCurrentUser);
+  const [profile, setProfile] = useState<User>();
+
+  useEffect(() => {
+    if (!userId) return;
+
+    (async () => {
+      const user = await userApi.get(userId);
+      setProfile(user);
+    })();
+  }, [userId]);
 
   return (
     <Box>
@@ -19,7 +32,8 @@ function MainPage() {
         </Typography>
       </Box>
 
-      <ProfileInfo profile={profile} />
+      {!profile && <LinearProgress sx={{ mt: 4 }} />}
+      {profile && <ProfileInfo profile={profile} />}
     </Box>
   );
 }
