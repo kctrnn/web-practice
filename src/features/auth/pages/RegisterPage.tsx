@@ -1,5 +1,5 @@
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
-import { Button, Divider, Stack, Typography } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import { useAppDispatch } from 'app/hooks';
 import { Images } from 'constants/index';
@@ -7,7 +7,6 @@ import { SignupPayload } from 'models';
 import { Link } from 'react-router-dom';
 import { signup } from '../authSlice';
 import RegisterForm from '../components/RegisterForm';
-import SocialList from '../components/SocialList';
 
 const ArtworkImage = styled('div')(({ theme }) => ({
   width: 480,
@@ -95,12 +94,13 @@ function RegisterPage() {
             fontSize="1.5rem"
             fontWeight={700}
             fontFamily={`'Raleway', sans-serif`}
+            mb={4}
           >
             Sign up to Web Practice
           </Typography>
 
-          <SocialList />
-          <Divider sx={{ color: 'text.secondary', mb: 2 }}>Or</Divider>
+          {/* <SocialList /> */}
+          {/* <Divider sx={{ color: 'text.secondary', mb: 2 }}>Or</Divider> */}
 
           <RegisterForm onSubmit={handleSubmit} />
         </Box>
