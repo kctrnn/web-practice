@@ -1,10 +1,11 @@
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import EmojiObjectsRoundedIcon from '@mui/icons-material/EmojiObjectsRounded';
 import HomeMaxIcon from '@mui/icons-material/HomeMax';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import StarsRoundedIcon from '@mui/icons-material/StarsRounded';
 import TagRoundedIcon from '@mui/icons-material/TagRounded';
-import { Typography } from '@mui/material';
+import { Divider, Link, Typography } from '@mui/material';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -12,12 +13,31 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Box, styled } from '@mui/system';
 import challengeApi from 'api/challengeApi';
+import { TOKEN } from 'constants/index';
 import { PathSlug } from 'models';
 import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { getPathImage, getPathName } from 'utils';
 
 const LinkStyled = styled(NavLink)(({ theme }) => ({
+  fontSize: '0.875rem',
+  color: '#777',
+
+  '&.active': {
+    color: '#333',
+    fontWeight: 600,
+  },
+
+  '&.active > li > div': {
+    backgroundColor: theme.palette.action.selected,
+  },
+
+  '&.active svg': {
+    color: '#333',
+  },
+}));
+
+const LinkCustom = styled(Link)(({ theme }) => ({
   fontSize: '0.875rem',
   color: '#777',
 
@@ -84,6 +104,7 @@ export const Sidebar = () => {
   const isPathMode = Boolean(pathSlugParam || challengeId);
 
   const [pathSlug, setPathSlug] = useState<PathSlug>(pathSlugParam);
+  const isLoggedIn = Boolean(localStorage.getItem(TOKEN));
 
   useEffect(() => {
     if (!challengeId) return;
@@ -185,6 +206,26 @@ export const Sidebar = () => {
             </ListItemButton>
           </ListItem>
         </LinkStyled>
+
+        {isLoggedIn && <Divider />}
+
+        {isLoggedIn && (
+          <LinkCustom
+            href="https://focused-ritchie-73a1e5.netlify.app/code"
+            target="_blank"
+            underline="none"
+          >
+            <ListItem disableGutters>
+              <ListItemButton sx={{ borderRadius: '.5rem' }}>
+                <ListItemIconStyled>
+                  <CodeRoundedIcon />
+                </ListItemIconStyled>
+
+                <ListItemTextStyled primary="Tutorial" disableTypography />
+              </ListItemButton>
+            </ListItem>
+          </LinkCustom>
+        )}
       </List>
     </Box>
   );

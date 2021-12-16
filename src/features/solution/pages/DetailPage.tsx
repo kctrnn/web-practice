@@ -9,7 +9,7 @@ import { Box, styled } from '@mui/system';
 import solutionApi from 'api/solutionApi';
 import { selectCurrentUser } from 'features/auth/authSlice';
 import { Solution } from 'models';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import SolutionFeedbackForm from '../components/SolutionFeedbackForm';
