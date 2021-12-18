@@ -1,3 +1,4 @@
+import axiosClient from 'api/axiosClient';
 import { NotFound, PrivateRoute } from 'components/Common';
 import { GeneralLayout, Home, MyTeam, SevenStep } from 'components/Layout';
 import LoginPage from 'features/auth/pages/LoginPage';
@@ -8,9 +9,17 @@ import Forum from 'features/forum';
 import Path from 'features/path';
 import Profile from 'features/profile';
 import Solution from 'features/solution';
+import { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
+  useEffect(() => {
+    (async () => {
+      await axiosClient.get('https://api-kctrnn.herokuapp.com/test');
+      await axiosClient.get('https://api-wp.herokuapp.com/test');
+    })();
+  }, []);
+
   return (
     <>
       <Switch>
