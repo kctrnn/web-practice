@@ -1,6 +1,13 @@
+import { LoadingButton } from '@mui/lab';
 import { Avatar, Button, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
+import axiosClient from 'api/axiosClient';
+import userApi from 'api/userApi';
+import { useAppDispatch } from 'app/hooks';
+import { USER } from 'constants/index';
+import { loginSuccess } from 'features/auth/authSlice';
 import { User } from 'models';
+import { ChangeEvent, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Wrapper = styled(Box)(({ theme }) => ({
@@ -43,6 +50,42 @@ export interface ProfileInfoProps {
 }
 
 function ProfileInfo({ profile }: ProfileInfoProps) {
+  const dispatch = useAppDispatch();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [profileAvatar, setProfileAvatar] = useState(profile.avatarUrl);
+  const [loading, setLoading] = useState(false);
+
+  const handleInputFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    try {
+      if (!e.target.files) return;
+
+      const imageFile = e.target.files[0];
+      const formData = new FormData();
+      formData.append('image', imageFile);
+
+      const apiUrl = 'https://api-kctrnn.herokuapp.com/upload';
+      setLoading(true);
+      const { url: avatarUrl }: any = await axiosClient.post(apiUrl, formData);
+
+      setProfileAvatar(avatarUrl);
+      const newProfile: User = { ...profile, avatarUrl };
+
+      if (newProfile._id) {
+        await userApi.update(newProfile._id, newProfile);
+        localStorage.setItem(USER, JSON.stringify(newProfile));
+        dispatch(loginSuccess(newProfile));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    setLoading(false);
+  };
+
+  const handleInputFileClick = () => {
+    inputRef.current && inputRef.current.click();
+  };
+
   return (
     <Wrapper>
       <Item justifyContent="space-between">
@@ -68,7 +111,28 @@ function ProfileInfo({ profile }: ProfileInfoProps) {
 
       <Item>
         <Name variant="body1">Photo</Name>
-        <AvatarStyled variant="rounded" src={profile.avatarUrl} alt="" />
+        <AvatarStyled
+          variant="rounded"
+          src={profileAvatar}
+          alt=""
+          sx={{ mr: 4 }}
+        />
+
+        <input
+          type="file"
+          ref={inputRef}
+          onChange={handleInputFileChange}
+          hidden
+        />
+
+        <LoadingButton
+          size="small"
+          variant="outlined"
+          loading={loading}
+          onClick={handleInputFileClick}
+        >
+          Change
+        </LoadingButton>
       </Item>
 
       <Item>
