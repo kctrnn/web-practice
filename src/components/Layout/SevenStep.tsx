@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 const List = styled('ul')(({ theme }) => ({
   paddingLeft: '1.5rem',
@@ -47,11 +48,12 @@ export function SevenStep() {
           <b>Step 5:</b> Update README.md
         </li>
         <li>
-          <b>Step 6:</b> Deploy your app and submit your solution
+          <b>Step 6:</b> Deploy your app (
+          <Link to="/deploy-to-vercel">Deploy to Vercel</Link>) and submit your
+          solution
         </li>
         <li>
-          <b>Step 7:</b> Share your solution on Twitter and other platforms to
-          ask for feedback
+          <b>Step 7:</b> Share your solution on platforms to ask for feedback
         </li>
       </List>
     </Box>

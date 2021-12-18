@@ -4,3 +4,4 @@ export * from './GeneralLayout';
 export * from './Home';
 export * from './SevenStep';
 export * from './MyTeam';
+export * from './DeployToVercel';

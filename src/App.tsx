@@ -1,6 +1,12 @@
 import axiosClient from 'api/axiosClient';
 import { NotFound, PrivateRoute } from 'components/Common';
-import { GeneralLayout, Home, MyTeam, SevenStep } from 'components/Layout';
+import {
+  DeployToVercel,
+  GeneralLayout,
+  Home,
+  MyTeam,
+  SevenStep,
+} from 'components/Layout';
 import LoginPage from 'features/auth/pages/LoginPage';
 import RegisterPage from 'features/auth/pages/RegisterPage';
 import Challenge from 'features/challenge';
@@ -70,6 +76,12 @@ function App() {
         <Route path="/seven-step">
           <GeneralLayout>
             <SevenStep />
+          </GeneralLayout>
+        </Route>
+
+        <Route path="/deploy-to-vercel">
+          <GeneralLayout>
+            <DeployToVercel />
           </GeneralLayout>
         </Route>
 

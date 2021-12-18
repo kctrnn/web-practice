@@ -27,4 +27,4 @@ export const CAROUSEL_LIST = [
 ];
 
 export const CHALLENGE_INTRO =
-  'Once you completed, submit your solutions by providing **URLs for both GitHub repository and live app** on any hosting platform ([5 Free Hosting Platform](https://dev.to/nghiemthu/top-5-free-hosting-sites-with-instructions-10h)) and explain briefly what you have done.\n\nAs long as you fulfill all the user stories, you can give your personal touches by adding transition, using your own images, changing colors,...\n\nRemember to put your name on the footer to prevent other from submitting your solutions.\n\nYou can check others’ solutions and give them feedbacks.';
+  'Once you completed, submit your solutions by providing **URLs for both GitHub repository and live app** on any hosting platform ([Deploy to Vercel](/deploy-to-vercel)) and explain briefly what you have done.\n\nAs long as you fulfill all the user stories, you can give your personal touches by adding transition, using your own images, changing colors,...\n\nRemember to put your name on the footer to prevent other from submitting your solutions.\n\nYou can check others’ solutions and give them feedbacks.';
