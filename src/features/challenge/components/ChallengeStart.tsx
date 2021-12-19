@@ -2,6 +2,7 @@ import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import { Button, IconButton, Paper, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { TOKEN } from 'constants/index';
+import { useHistory } from 'react-router-dom';
 
 const List = styled('ul')(({ theme }) => ({
   listStyleType: 'none',
@@ -31,6 +32,7 @@ export interface ChallengeStartProps {
   isSubmitted: boolean;
   onStartDownload: (event: any) => void;
   onSubmitClick: () => void;
+  solutionId: string;
 }
 
 function ChallengeStart({
@@ -40,8 +42,10 @@ function ChallengeStart({
   resourceId,
   onStartDownload,
   onSubmitClick,
+  solutionId,
 }: ChallengeStartProps) {
   const isLoggedIn = Boolean(localStorage.getItem(TOKEN));
+  const history = useHistory();
 
   return (
     <Paper variant="outlined" sx={{ p: 2.5 }}>
@@ -122,7 +126,12 @@ function ChallengeStart({
               Submit solution
             </ButtonStyled>
           ) : (
-            <ButtonStyled variant="contained" disableElevation color="success">
+            <ButtonStyled
+              variant="contained"
+              disableElevation
+              color="success"
+              onClick={() => history.push(`/solutions/${solutionId}`)}
+            >
               View solution
             </ButtonStyled>
           )}

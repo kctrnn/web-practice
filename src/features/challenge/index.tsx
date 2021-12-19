@@ -169,6 +169,7 @@ function Challenge() {
               isSubmitted={isSubmitted}
               onStartDownload={handleStartDownload}
               onSubmitClick={handleSubmitClick}
+              solutionId={currentSolution?._id || ''}
             />
           </Grid>
         </Grid>
