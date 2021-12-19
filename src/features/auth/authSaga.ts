@@ -33,7 +33,11 @@ function* handleLogin(payload: LoginPayload) {
     yield put(push('/'));
   } catch (error: any) {
     yield put(loginFailed());
-    toast.error(error.response.data?.message || error.response.data?.error);
+    toast.error(
+      error.response.data?.message ||
+        error.response.data?.error ||
+        'Failed to login'
+    );
   }
 }
 
@@ -53,8 +57,13 @@ function* handleRegister(payload: SignupPayload) {
 
     // redirect to home page
     yield put(push('/'));
-  } catch (error) {
+  } catch (error: any) {
     yield put(signupFailed());
+    toast.error(
+      error.response.data?.message ||
+        error.response.data?.error ||
+        'Failed to register'
+    );
   }
 }
 
